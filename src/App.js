@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native-web';
+import {View, Text, StyleSheet, ScrollView, Dimensions} from 'react-native-web';
 import Header from "./Pages/Header";
 import Body from "./Pages/Body";
+
+let deviceHeight = Dimensions.get('window').height;
 
 class App extends Component {
     render() {
         return (
-            
-            <View style={styles.container}>
-                <ScrollView contentContainerStyle={styles.scrollView}>
+            <ScrollView contentContainerStyle={styles.scrollView}>
+                <View style={styles.container}>
                     <Header/>
                     <Body/>
-                </ScrollView>
-            </View>
+                </View>
+            </ScrollView>
         
         );
     }
@@ -20,12 +21,15 @@ class App extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#f7f7ff',
-        paddingHorizontal:70
+        // flex: 1,
+        backgroundColor: '#f3f5f7',
+        paddingHorizontal: 70,
+        // height: 2000
+        
     },
     scrollView: {
-        flex: 1,
+        // flex: 1,
+        // height: 500
     }
 });
 
