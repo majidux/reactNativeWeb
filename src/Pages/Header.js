@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#f7f7ff',
         justifyContent:'space-between',
         flexDirection:'row',
-        alignItems:'center'
+        alignItems:'center',
     },
     userView: {
         flexDirection: 'row',
@@ -102,12 +102,14 @@ const styles = StyleSheet.create({
         flex:1,
         alignItems: 'center',
         flexDirection: 'row',
+        flexWrap:'wrap'
     },
     rightSide:{
         flex:1,
         alignItems:'center',
         flexDirection:'row',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+        flexWrap:'wrap'
     },
     personTitle:{
         fontSize: 9,
