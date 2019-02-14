@@ -1,9 +1,42 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableHighlight, Image} from 'react-native-web';
+import {View, Text, StyleSheet, TouchableHighlight, Image,Animated} from 'react-native-web';
 import {globalStyle} from "./globalStyle";
 import FakeData from './FakeData';
 
 export default class Products extends Component {
+    
+    constructor(props){
+        super(props);
+        this.state={
+            fadeIn:new Animated.Value(0),
+            fadeOut:new Animated.Value(1)
+        }
+    }
+    
+    componentDidMount() {
+        this.fadeIn();
+    }
+    fadeIn = () => {
+        Animated.timing(
+            this.state.fadeIn,
+            {
+                toValue:1,
+                duration:1000,
+                useNativeDriver:true
+            }
+        ).start(()=>this.fadeOut())
+    };
+    fadeOut = () => {
+        this.state.fadeOut.setValue(1);
+        Animated.timing(
+            this.state.fadeOut,
+            {
+                toValue: 0,
+                duration: 2000,
+            }
+        ).start();
+    };
+    
     render() {
         return (
             <View style={styles.products}>
@@ -20,11 +53,11 @@ export default class Products extends Component {
                         </TouchableHighlight>
                     </View>
                 </View>
-                <View style={styles.productsBoxes}>
+                <Animated.View style={[styles.productsBoxes,{opacity:this.state.fadeIn}]}>
                     
                     
                     {
-                        FakeData.slice(0,4).map((item) =>
+                        FakeData.slice(0, 4).map((item) =>
                             <View style={[styles.singleProductsBoxes, globalStyle.flex1]}>
                                 <View style={styles.productImagesView}>
                                     <Image
@@ -56,7 +89,9 @@ export default class Products extends Component {
                                         />
                                     </View>
                                     <View style={[styles.titleProductView]}>
-                                        <Text style={styles.titleProduct}>{item.title}</Text>
+                                        <TouchableHighlight underlayColor={'rgba(219,219,219,.5)'} onPress={() => {}}>
+                                            <Text style={styles.titleProduct}>{item.title}</Text>
+                                        </TouchableHighlight>
                                         <Text style={styles.quantity}>({item.price})</Text>
                                     </View>
                                     <View style={[globalStyle.flex1, globalStyle.justifyCenter]}>
@@ -87,7 +122,7 @@ export default class Products extends Component {
                         )
                     }
                 
-                </View>
+                </Animated.View>
             </View>
         );
     }

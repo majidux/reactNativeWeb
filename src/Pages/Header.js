@@ -17,7 +17,7 @@ export default class Header extends Component {
                             source={require('../Assets/images/employee.png')}
                             style={styles._imageStyle}
                         />
-                        <TouchableHighlight underlayColor={'rgba(50,50,50,.5)'}>
+                        <TouchableHighlight underlayColor={'rgba(219,219,219,.7)'} onPress={()=>{}}>
                             <Text style={styles.fontMenuItems}>USERS</Text>
                         </TouchableHighlight>
                     </View>
@@ -26,18 +26,18 @@ export default class Header extends Component {
                             source={require('../Assets/images/order.png')}
                             style={styles._imageStyle}
                         />
-                        <TouchableOpacity>
+                        <TouchableHighlight underlayColor={'rgba(219,219,219,.7)'} onPress={()=>{}}>
                             <Text style={styles.fontMenuItems}>ORDERS</Text>
-                        </TouchableOpacity>
+                        </TouchableHighlight>
                     </View>
                     <View style={styles.userView}>
                         <Image
                             source={require('../Assets/images/gift.png')}
                             style={styles._imageStyle}
                         />
-                        <TouchableOpacity>
+                        <TouchableHighlight underlayColor={'rgba(219,219,219,.7)'} onPress={()=>{}}>
                             <Text style={styles.fontMenuItems}>PRODUCTS</Text>
-                        </TouchableOpacity>
+                        </TouchableHighlight>
                     </View>
                 </View>
                 <View style={styles.rightSide}>
