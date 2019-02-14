@@ -23,7 +23,6 @@ export default class Statistics extends Component {
 }
 const styles = StyleSheet.create({
     statistic: {
-        // flex: 1,
         height:120,
         flexDirection:'row',
         flexWrap:'wrap'

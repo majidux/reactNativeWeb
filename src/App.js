@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, ScrollView, Dimensions} from 'react-native-web';
+import {View, Text, StyleSheet, ScrollView} from 'react-native-web';
 import Header from "./Pages/Header";
 import Body from "./Pages/Body";
 
-let deviceHeight = Dimensions.get('window').height;
 
 class App extends Component {
     render() {
         return (
-            <ScrollView contentContainerStyle={styles.scrollView}>
+            <ScrollView>
                 <View style={styles.container}>
                     <Header/>
                     <Body/>
@@ -21,16 +20,10 @@ class App extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
-        backgroundColor: '#f3f5f7',
+        backgroundColor: '#e6ebee',
         paddingHorizontal: 70,
-        // height: 2000
         
     },
-    scrollView: {
-        // flex: 1,
-        // height: 500
-    }
 });
 
 export default App;

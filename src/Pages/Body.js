@@ -7,7 +7,7 @@ import Comments from "../Components/Comments";
 export default class Body extends Component {
     render() {
         return (
-            <View style={styles.body}>
+            <View>
                 <Statistics/>
                 <Products/>
                 <Comments/>
@@ -15,10 +15,4 @@ export default class Body extends Component {
         );
     }
 }
-const styles = StyleSheet.create({
-    body: {
-        // flex: 5,
-        height:1000,
-        backgroundColor:'wheat'
-    }
-});
+
