@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native-web';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import {globalStyle} from "./globalStyle";
 
 export default class CommentRightSide extends Component {
@@ -23,7 +23,20 @@ export default class CommentRightSide extends Component {
                     </View>
                 </View>
                 <View style={styles.allComment}>
-                    <Text>Body</Text>
+                    <View style={[globalStyle.flexRow,globalStyle.justifyCenter]}>
+                        <View style={globalStyle.flexRow}>
+                            <View>
+                                <Text>Picture</Text>
+                            </View>
+                            <View>
+                                <Text>Emma Miles</Text>
+                                <Text>CEO & Co-Founder</Text>
+                            </View>
+                        </View>
+                        <View>
+                            <Text>Icons</Text>
+                        </View>
+                    </View>
                 </View>
             </View>
         );

@@ -5,9 +5,5 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="@types/react-native" level="application" />
-    <orderEntry type="library" name="@types/react-redux" level="application" />
-    <orderEntry type="library" name="@types/react-jss" level="application" />
-    <orderEntry type="library" name="@types/react-is" level="application" />
   </component>
 </module>

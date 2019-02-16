@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/reactNativeWeb.iml" filepath="$PROJECT_DIR$/.idea/reactNativeWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/react-native-web.iml" filepath="$PROJECT_DIR$/.idea/react-native-web.iml" />
     </modules>
   </component>
 </project>

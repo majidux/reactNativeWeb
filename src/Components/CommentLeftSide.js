@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, TouchableHighlight} from 'react-native-web';
+import {View, Text, StyleSheet, Image, TouchableHighlight, FlatList} from 'react-native';
 import {globalStyle} from "./globalStyle";
+import {FakeComments} from "./FakeComment";
 
 export default class CommentLeftSide extends Component {
     render() {
@@ -22,65 +23,67 @@ export default class CommentLeftSide extends Component {
                         <Text style={styles.subtitleRecent}>Replay on comments that are not flattering</Text>
                     </View>
                 </View>
-                <View style={styles.allComment}>
-                    <View>
-                        <View style={styles.commenterDetail}>
-                            <View style={[globalStyle.flexRow]}>
-                                <View>
-                                    <Image
-                                        source={require('../Assets/images/profile.jpg')}
-                                        style={styles.profilePicture}
-                                    />
+                <View>
+                    <FlatList
+                        data={FakeComments}
+                        renderItem={({item})=>
+                            <View style={styles.allComment}>
+                                <View style={styles.commenterDetail}>
+                                    <View style={[globalStyle.flexRow]}>
+                                        <View>
+                                            <Image
+                                                source={item.profilePicture}
+                                                style={styles.profilePicture}
+                                            />
+                                        </View>
+                                        <View>
+                                            <Text style={{color:'#7a7a7a',fontWeight:'700'}}>{item.user}</Text>
+                                            <Text style={styles.commentFont}>New customer</Text>
+                                        </View>
+                                    </View>
+                                    <View>
+                
+                                        <View style={[styles.rateStarView, globalStyle.alignCenter]}>
+                                            <Text>RATED</Text>
+                                            <Image
+                                                source={require('../Assets/images/goldStar.png')}
+                                                style={styles.rateStarImage}
+                                            />
+                                            <Image
+                                                source={require('../Assets/images/goldStar.png')}
+                                                style={styles.rateStarImage}
+                                            />
+                                            <Image
+                                                source={require('../Assets/images/goldStar.png')}
+                                                style={styles.rateStarImage}
+                                            />
+                                            <Image
+                                                source={require('../Assets/images/goldStar.png')}
+                                                style={styles.rateStarImage}
+                                            />
+                                            <Image
+                                                source={require('../Assets/images/greyStar.png')}
+                                                style={styles.rateStarImage}
+                                            />
+                                        </View>
+                                    </View>
                                 </View>
-                                <View>
-                                    <Text>Olive Houston</Text>
-                                    <Text style={styles.commentFont}>New customer</Text>
+                                <View style={styles.commentSection}>
+                                    <View style={[globalStyle.flex1,styles.commentView]}>
+                                        <Text style={styles.commentFont}>{item.comment}</Text>
+                                    </View>
+                                    <View style={styles.lineViewOutSide}>
+                                        <View style={styles.lineViewInSide}/>
+                                    </View>
+                                    <TouchableHighlight style={styles.buttonView} underlayColor={'rgba(100,100,100,.3)'} onPress={()=>{}}>
+                                        <View style={styles.buttonView}>
+                                            <Text>Answer</Text>
+                                        </View>
+                                    </TouchableHighlight>
                                 </View>
                             </View>
-                            <View>
-                                
-                                <View style={[styles.rateStarView, globalStyle.alignCenter]}>
-                                    <Text>RATED</Text>
-                                    <Image
-                                        source={require('../Assets/images/goldStar.png')}
-                                        style={styles.rateStarImage}
-                                    />
-                                    <Image
-                                        source={require('../Assets/images/goldStar.png')}
-                                        style={styles.rateStarImage}
-                                    />
-                                    <Image
-                                        source={require('../Assets/images/goldStar.png')}
-                                        style={styles.rateStarImage}
-                                    />
-                                    <Image
-                                        source={require('../Assets/images/goldStar.png')}
-                                        style={styles.rateStarImage}
-                                    />
-                                    <Image
-                                        source={require('../Assets/images/greyStar.png')}
-                                        style={styles.rateStarImage}
-                                    />
-                                </View>
-                            </View>
-                        </View>
-                        <View style={styles.commentSection}>
-                            <View style={[globalStyle.flex1,styles.commentView]}>
-                                <Text style={styles.commentFont}>Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                    elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-                                    volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
-                                    suscipit lobortis nisl ut aliquip ex ea commodo consequat.</Text>
-                            </View>
-                            <View style={styles.lineViewOutSide}>
-                                <View style={styles.lineViewInSide}/>
-                            </View>
-                            <TouchableHighlight style={styles.buttonView} underlayColor={'rgba(100,100,100,.3)'} onPress={()=>{}}>
-                                <View style={styles.buttonView}>
-                                    <Text>Answer</Text>
-                                </View>
-                            </TouchableHighlight>
-                        </View>
-                    </View>
+                        }
+                    />
                 </View>
             </View>
         );
