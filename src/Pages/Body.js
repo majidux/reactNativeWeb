@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native-web';
+import {View} from 'react-native-web';
 import Statistics from "../Components/Statistics";
 import Products from "../Components/Products";
 import Comments from "../Components/Comments";

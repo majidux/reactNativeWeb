@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity,TouchableHighlight} from 'react-native-web';
+import {View, Text, StyleSheet, Image,TouchableHighlight} from 'react-native-web';
 
 export default class Header extends Component {
     render() {

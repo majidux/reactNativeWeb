@@ -13,5 +13,5 @@ export const globalStyle={
     },
     greyColor:{
         color:'#a9a9a9'
-    }
+    },
 };

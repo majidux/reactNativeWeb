@@ -3,6 +3,8 @@ import {View, Text, StyleSheet, TouchableHighlight, Image,Animated} from 'react-
 import {globalStyle} from "./globalStyle";
 import FakeData from './FakeData';
 
+
+
 export default class Products extends Component {
     
     constructor(props){
@@ -22,10 +24,12 @@ export default class Products extends Component {
             {
                 toValue:1,
                 duration:1000,
-                useNativeDriver:true
+                friction:1,
+                tension:10,
             }
         ).start(()=>this.fadeOut())
     };
+    
     fadeOut = () => {
         this.state.fadeOut.setValue(1);
         Animated.timing(
@@ -57,8 +61,8 @@ export default class Products extends Component {
                     
                     
                     {
-                        FakeData.slice(0, 4).map((item) =>
-                            <View style={[styles.singleProductsBoxes, globalStyle.flex1]}>
+                        FakeData.slice(0, 4).map((item,i) =>
+                            <View key={i} style={[styles.singleProductsBoxes, globalStyle.flex1]}>
                                 <View style={styles.productImagesView}>
                                     <Image
                                         source={item.image}
@@ -134,7 +138,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 22,
-        color: '#747474'
+        color: '#404040'
     },
     subtitleProduct: {
         color: '#a9a9a9',
@@ -159,9 +163,8 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         paddingHorizontal: 30,
         borderRadius: 3,
-        elevation: 20,
         backgroundColor: '#fff',
-        marginHorizontal: 10
+        marginRight: 10
     },
     productImagesView: {
         flex: 2,
@@ -198,5 +201,6 @@ const styles = StyleSheet.create({
     },
     lineSpace: {
         paddingHorizontal: 10
-    }
+    },
+ 
 });

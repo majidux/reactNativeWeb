@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native-web';
+import {View, StyleSheet, ScrollView } from 'react-native-web';
 import Header from "./Pages/Header";
 import Body from "./Pages/Body";
 
-
 class App extends Component {
+    
     render() {
         return (
             <ScrollView>
