@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableHighlight, Image,Animated} from 'react-native-web';
+import {View, Text, StyleSheet, TouchableHighlight, Image,Animated,FlatList} from 'react-native';
 import {globalStyle} from "./globalStyle";
 import FakeData from './FakeData';
 
@@ -59,10 +59,12 @@ export default class Products extends Component {
                 </View>
                 <Animated.View style={[styles.productsBoxes,{opacity:this.state.fadeIn}]}>
                     
-                    
-                    {
-                        FakeData.slice(0, 4).map((item,i) =>
-                            <View key={i} style={[styles.singleProductsBoxes, globalStyle.flex1]}>
+                    <FlatList
+                        data={FakeData.slice(0,4)}
+                        numColumns={4}
+                        keyExtractor={item => item.title}
+                        renderItem={({item,index})=>
+                            <View style={[styles.singleProductsBoxes, globalStyle.flex1]}>
                                 <View style={styles.productImagesView}>
                                     <Image
                                         source={item.image}
@@ -119,13 +121,14 @@ export default class Products extends Component {
                                             />
                                             <Text style={styles.quantity}>{item.likes}</Text>
                                         </View>
-                                    
+            
                                     </View>
                                 </View>
                             </View>
-                        )
-                    }
-                
+                        }
+                    
+                    />
+                    
                 </Animated.View>
             </View>
         );
@@ -156,15 +159,18 @@ const styles = StyleSheet.create({
         color: '#747474',
     },
     productsBoxes: {
-        flex: 4,
+        flex: 5,
         flexDirection: 'row',
+        // height:500
     },
     singleProductsBoxes: {
         paddingVertical: 15,
         paddingHorizontal: 30,
         borderRadius: 3,
         backgroundColor: '#fff',
-        marginRight: 10
+        marginRight: 10,
+        height:400
+        // flex:1
     },
     productImagesView: {
         flex: 2,

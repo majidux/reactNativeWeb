@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native-web';
-import {globalStyle} from './globalStyle';
+import {View, StyleSheet} from 'react-native-web';
+// import {globalStyle} from './globalStyle';
 import CommentLeftSide from "./CommentLeftSide";
 import CommentRightSide from "./CommentRightSide";
 

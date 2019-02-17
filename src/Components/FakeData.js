@@ -30,6 +30,22 @@ const FakeData =[
         quantity:'21 sold',
         likes: '28',
         comment:'201'
+    },
+    {
+        title:'Trousers',
+        image:require('../Assets/images/pants.png'),
+        price:'$47.00',
+        quantity:'21 sold',
+        likes: '28',
+        comment:'201'
+    },
+    {
+        title:'Trousers',
+        image:require('../Assets/images/pants.png'),
+        price:'$47.00',
+        quantity:'21 sold',
+        likes: '28',
+        comment:'201'
     }
 ];
 export default FakeData;

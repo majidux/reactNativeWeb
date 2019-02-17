@@ -25,8 +25,10 @@ export default class CommentLeftSide extends Component {
                 </View>
                 <View>
                     <FlatList
-                        data={FakeComments}
-                        renderItem={({item})=>
+                        data={FakeComments.slice(0,2)}
+                        keyExtractor={item => item.id}
+                        initialNumToRender={2}
+                        renderItem={({item}) =>
                             <View style={styles.allComment}>
                                 <View style={styles.commenterDetail}>
                                     <View style={[globalStyle.flexRow]}>
@@ -37,12 +39,12 @@ export default class CommentLeftSide extends Component {
                                             />
                                         </View>
                                         <View>
-                                            <Text style={{color:'#7a7a7a',fontWeight:'700'}}>{item.user}</Text>
-                                            <Text style={styles.commentFont}>New customer</Text>
+                                            <Text style={{color: '#7a7a7a', fontWeight: '700'}}>{item.user}</Text>
+                                            <Text style={styles.commentFont}>{item.position}</Text>
                                         </View>
                                     </View>
                                     <View>
-                
+                                        
                                         <View style={[styles.rateStarView, globalStyle.alignCenter]}>
                                             <Text>RATED</Text>
                                             <Image
@@ -69,13 +71,15 @@ export default class CommentLeftSide extends Component {
                                     </View>
                                 </View>
                                 <View style={styles.commentSection}>
-                                    <View style={[globalStyle.flex1,styles.commentView]}>
+                                    <View style={[globalStyle.flex1]}>
                                         <Text style={styles.commentFont}>{item.comment}</Text>
                                     </View>
                                     <View style={styles.lineViewOutSide}>
                                         <View style={styles.lineViewInSide}/>
                                     </View>
-                                    <TouchableHighlight style={styles.buttonView} underlayColor={'rgba(100,100,100,.3)'} onPress={()=>{}}>
+                                    <TouchableHighlight style={styles.buttonView} underlayColor={'rgba(100,100,100,.3)'}
+                                                        onPress={() => {
+                                                        }}>
                                         <View style={styles.buttonView}>
                                             <Text>Answer</Text>
                                         </View>
@@ -147,25 +151,25 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: '700',
     },
-    lineViewOutSide:{
+    lineViewOutSide: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical:20
+        marginVertical: 20
     },
-    lineViewInSide:{
-        width:500,
-        height:1,
-        borderBottomWidth:2,
-        borderBottomColor:'#rgba(100,100,100,.2)'
+    lineViewInSide: {
+        width: 500,
+        height: 1,
+        borderBottomWidth: 2,
+        borderBottomColor: '#rgba(100,100,100,.2)'
     },
-    buttonView:{
-        borderWidth:1,
-        borderColor:'#cbcbcb',
+    buttonView: {
+        borderWidth: 1,
+        borderColor: '#cbcbcb',
         borderRadius: 5,
-        width:70,
-        height:30,
-        justifyContent:'center',
-        alignItems:'center',
+        width: 70,
+        height: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     rateStarView: {
         flexDirection: 'row',
@@ -174,6 +178,7 @@ const styles = StyleSheet.create({
     rateStarImage: {
         width: 10,
         height: 10,
-        marginHorizontal: 2
+        marginHorizontal: 2,
+        
     },
 });

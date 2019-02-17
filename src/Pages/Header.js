@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image,TouchableHighlight} from 'react-native-web';
+import {View, Text, StyleSheet, Image, TouchableHighlight} from 'react-native-web';
 
 export default class Header extends Component {
     render() {
@@ -17,7 +17,8 @@ export default class Header extends Component {
                             source={require('../Assets/images/employee.png')}
                             style={styles._imageStyle}
                         />
-                        <TouchableHighlight underlayColor={'rgba(219,219,219,.7)'} onPress={()=>{}}>
+                        <TouchableHighlight underlayColor={'rgba(219,219,219,.7)'} onPress={() => {
+                        }}>
                             <Text style={styles.fontMenuItems}>USERS</Text>
                         </TouchableHighlight>
                     </View>
@@ -26,19 +27,22 @@ export default class Header extends Component {
                             source={require('../Assets/images/order.png')}
                             style={styles._imageStyle}
                         />
-                        <TouchableHighlight underlayColor={'rgba(219,219,219,.7)'} onPress={()=>{}}>
+                        <TouchableHighlight underlayColor={'rgba(219,219,219,.7)'} onPress={() => {}}>
                             <Text style={styles.fontMenuItems}>ORDERS</Text>
                         </TouchableHighlight>
                     </View>
-                    <View style={styles.userView}>
-                        <Image
-                            source={require('../Assets/images/gift.png')}
-                            style={styles._imageStyle}
-                        />
-                        <TouchableHighlight underlayColor={'rgba(219,219,219,.7)'} onPress={()=>{}}>
+                    <TouchableHighlight underlayColor={'rgba(219,219,219,.7)'} onPress={() => {}}>
+                        <View style={styles.userView}>
+                            
+                            <Image
+                                source={require('../Assets/images/gift.png')}
+                                style={styles._imageStyle}
+                            />
                             <Text style={styles.fontMenuItems}>PRODUCTS</Text>
-                        </TouchableHighlight>
-                    </View>
+                        
+                        </View>
+                    </TouchableHighlight>
+                
                 </View>
                 <View style={styles.rightSide}>
                     <View style={styles._notification}>
@@ -72,10 +76,10 @@ export default class Header extends Component {
 }
 const styles = StyleSheet.create({
     _header: {
-        height:100,
-        justifyContent:'space-between',
-        flexDirection:'row',
-        alignItems:'center',
+        height: 100,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     userView: {
         flexDirection: 'row',
@@ -97,48 +101,48 @@ const styles = StyleSheet.create({
         color: '#5f5f5f',
         fontWeight: '700'
     },
-    leftSide:{
-        flex:1,
+    leftSide: {
+        flex: 1,
         alignItems: 'center',
         flexDirection: 'row',
-        flexWrap:'wrap'
+        flexWrap: 'wrap'
     },
-    rightSide:{
-        flex:1,
-        alignItems:'center',
-        flexDirection:'row',
+    rightSide: {
+        flex: 1,
+        alignItems: 'center',
+        flexDirection: 'row',
         justifyContent: 'flex-end',
-        flexWrap:'wrap'
+        flexWrap: 'wrap'
     },
-    personTitle:{
+    personTitle: {
         fontSize: 9,
         color: '#9f9f9f',
         fontWeight: 'bold'
     },
-    pointer:{
-        width:5,
-        height:5,
+    pointer: {
+        width: 5,
+        height: 5,
         marginLeft: 5
     },
-    personView:{
-        flexDirection:'row',
-        justifyContent:'center',
-        alignItems:'center'
+    personView: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    _notificationImage:{
-        width:10,
-        height:10
+    _notificationImage: {
+        width: 10,
+        height: 10
     },
-    _notification:{
-        padding:10,
-        borderRadius:30,
-        borderWidth:1,
-        borderColor:'#b7b7b7'
-    },
-    profilePicture:{
-        width:30,
-        height:30,
+    _notification: {
+        padding: 10,
         borderRadius: 30,
-        marginHorizontal:10
+        borderWidth: 1,
+        borderColor: '#b7b7b7'
+    },
+    profilePicture: {
+        width: 30,
+        height: 30,
+        borderRadius: 30,
+        marginHorizontal: 10
     }
 });
