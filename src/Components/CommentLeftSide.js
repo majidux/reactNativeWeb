@@ -1,92 +1,35 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, TouchableHighlight, FlatList} from 'react-native';
-import {globalStyle} from "./globalStyle";
+// import {globalStyle} from "./globalStyle";
+import ReplyFlatList from "./ReplyFlatList";
 import {FakeComments} from "./FakeComment";
 
 export default class CommentLeftSide extends Component {
+
+    
     render() {
         return (
             <View style={styles.commentLeftSide}>
-                <View style={styles.headerComment}>
-                    <View style={styles.titleView}>
-                        <View style={styles.imageCommentView}>
-                            <Image
-                                source={require('../Assets/images/comment.png')}
-                                style={styles.imageComment}
-                            />
-                        </View>
-                        <View>
-                            <Text style={styles.recentComment}>Recent comment</Text>
-                        </View>
-                    </View>
-                    <View style={styles.subtitleRecentView}>
-                        <Text style={styles.subtitleRecent}>Replay on comments that are not flattering</Text>
-                    </View>
-                </View>
                 <View>
+                    <View style={styles.headerComment}>
+                        <View style={styles.titleView}>
+                            <View style={styles.imageCommentView}>
+                                <Image
+                                    source={require('../Assets/images/comment.png')}
+                                    style={styles.imageComment}
+                                />
+                            </View>
+                            <View>
+                                <Text style={styles.recentComment}>Recent comments</Text>
+                            </View>
+                        </View>
+                        <View style={styles.subtitleRecentView}>
+                            <Text style={styles.subtitleRecent}>Reply on comments that are not flattering</Text>
+                        </View>
+                    </View>
                     <FlatList
                         data={FakeComments.slice(0,2)}
-                        keyExtractor={item => item.id}
-                        initialNumToRender={2}
-                        renderItem={({item}) =>
-                            <View style={styles.allComment}>
-                                <View style={styles.commenterDetail}>
-                                    <View style={[globalStyle.flexRow]}>
-                                        <View>
-                                            <Image
-                                                source={item.profilePicture}
-                                                style={styles.profilePicture}
-                                            />
-                                        </View>
-                                        <View>
-                                            <Text style={{color: '#7a7a7a', fontWeight: '700'}}>{item.user}</Text>
-                                            <Text style={styles.commentFont}>{item.position}</Text>
-                                        </View>
-                                    </View>
-                                    <View>
-                                        
-                                        <View style={[styles.rateStarView, globalStyle.alignCenter]}>
-                                            <Text>RATED</Text>
-                                            <Image
-                                                source={require('../Assets/images/goldStar.png')}
-                                                style={styles.rateStarImage}
-                                            />
-                                            <Image
-                                                source={require('../Assets/images/goldStar.png')}
-                                                style={styles.rateStarImage}
-                                            />
-                                            <Image
-                                                source={require('../Assets/images/goldStar.png')}
-                                                style={styles.rateStarImage}
-                                            />
-                                            <Image
-                                                source={require('../Assets/images/goldStar.png')}
-                                                style={styles.rateStarImage}
-                                            />
-                                            <Image
-                                                source={require('../Assets/images/greyStar.png')}
-                                                style={styles.rateStarImage}
-                                            />
-                                        </View>
-                                    </View>
-                                </View>
-                                <View style={styles.commentSection}>
-                                    <View style={[globalStyle.flex1]}>
-                                        <Text style={styles.commentFont}>{item.comment}</Text>
-                                    </View>
-                                    <View style={styles.lineViewOutSide}>
-                                        <View style={styles.lineViewInSide}/>
-                                    </View>
-                                    <TouchableHighlight style={styles.buttonView} underlayColor={'rgba(100,100,100,.3)'}
-                                                        onPress={() => {
-                                                        }}>
-                                        <View style={styles.buttonView}>
-                                            <Text>Answer</Text>
-                                        </View>
-                                    </TouchableHighlight>
-                                </View>
-                            </View>
-                        }
+                        renderItem={({item},index) => <ReplyFlatList children={item}/>}
                     />
                 </View>
             </View>
@@ -127,24 +70,17 @@ const styles = StyleSheet.create({
         marginRight: 5
     },
     allComment: {
-        backgroundColor: '#fff',
-        flex: 8,
-        padding: 30
-    },
-    commenterDetail: {
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 10
+        padding: 15,
+        paddingRight: 0
     },
     profilePicture: {
         width: 40,
         height: 40,
         borderRadius: 30,
         marginHorizontal: 10
-    },
-    commentSection: {
-        paddingLeft: 60,
-        flex: 1,
     },
     commentFont: {
         color: '#a9a9a9',
@@ -157,28 +93,9 @@ const styles = StyleSheet.create({
         marginVertical: 20
     },
     lineViewInSide: {
-        width: 500,
+        width: 350,
         height: 1,
         borderBottomWidth: 2,
         borderBottomColor: '#rgba(100,100,100,.2)'
-    },
-    buttonView: {
-        borderWidth: 1,
-        borderColor: '#cbcbcb',
-        borderRadius: 5,
-        width: 70,
-        height: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    rateStarView: {
-        flexDirection: 'row',
-        flex: 1
-    },
-    rateStarImage: {
-        width: 10,
-        height: 10,
-        marginHorizontal: 2,
-        
     },
 });
