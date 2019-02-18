@@ -1,17 +1,24 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, ScrollView } from 'react-native-web';
+import {StyleSheet, ScrollView ,View} from 'react-native';
 import Header from "./Pages/Header";
 import Body from "./Pages/Body";
+import {createStore} from "redux";
+import {Provider} from "react-redux";
+import reducer from "./services/commentReply/reducer";
+import combiner from './services/combiner';
+export const store =createStore(reducer);
 
 class App extends Component {
     
     render() {
         return (
             <ScrollView>
-                <View style={styles.container}>
-                    <Header/>
-                    <Body/>
-                </View>
+                <Provider store={store}>
+                    <View style={styles.container}>
+                        <Header/>
+                        <Body/>
+                    </View>
+                </Provider>
             </ScrollView>
         
         );

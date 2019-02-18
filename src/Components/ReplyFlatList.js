@@ -1,165 +1,168 @@
-import React , {Component} from 'react';
+import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, TouchableHighlight, TextInput} from 'react-native';
 // import {FakeComments} from "./FakeComment";
 import {globalStyle} from "./globalStyle";
+import {connect} from "react-redux";
+import {deleteText, addText} from "../services/commentReply/action";
 
-export default class ReplyFlatList extends Component {
+class ReplyFlatList extends Component {
     
     constructor(props) {
         super(props);
         this.state = {
             selected: false,
-            items: [],
-            inputText: ''
+            inText: ''
         }
     }
     
-   
     
     replyExpand = () => {
-        this.setState({selected:!this.state.selected})
+        this.setState({selected: !this.state.selected})
     };
     
-    inputer = text =>{
-        this.setState({inputText:text})
+    inputer = text => {
+        this.setState({inText: text})
     };
     
     submitter = () => {
-        if(!this.state.inputText.length){
+        if (this.state.inText.length === 0) {
             return;
-        }
-        else{
-            const newItem = {
-                text:this.state.inputText,
-                isCompleted:false
-            };
-            this.setState(prev => ({...prev,items:[...prev.items,newItem]}),
-                ()=>this.setState({inputText:''}),
-                this.setState({selected:!this.state.selected}))
+        } else {
+            this.props.addText(this.state.inText);
+            this.setState({inText: ''});
+            this.setState({selected: !this.state.selected})
         }
     };
-    
-    
-    changeActivity = i =>{
-        this.setState({
-            items:[
-                ...this.state.items.slice(0,i),
-                {
-                    ...this.state.items[i],
-                    isCompleted: !this.state.items[i].isCompleted
-                },
-                ...this.state.items.slice(i+1),
-            ]
-        })
+    deleteItem = index => {
+        this.props.deleteText(index);
     };
     
     
     render() {
         return (
-                        <View style={styles.allComment}>
-                            <View style={styles.commenterDetail}>
-                                <View style={[globalStyle.flexRow]}>
-                                    <View>
-                                        <Image
-                                            source={this.props.children.profilePicture}
-                                            style={styles.profilePicture}
-                                        />
-                                    </View>
-                                    <View>
-                                        <Text style={{color: '#7a7a7a', fontWeight: '700'}}>{this.props.children.user}</Text>
-                                        <Text style={styles.commentFont}>{this.props.children.position}</Text>
-                                    </View>
-                                </View>
-                                <View>
-                                    
-                                    <View style={[styles.rateStarView, globalStyle.alignCenter]}>
-                                        <Text>RATED</Text>
-                                        <Image
-                                            source={require('../Assets/images/goldStar.png')}
-                                            style={styles.rateStarImage}
-                                        />
-                                        <Image
-                                            source={require('../Assets/images/goldStar.png')}
-                                            style={styles.rateStarImage}
-                                        />
-                                        <Image
-                                            source={require('../Assets/images/goldStar.png')}
-                                            style={styles.rateStarImage}
-                                        />
-                                        <Image
-                                            source={require('../Assets/images/goldStar.png')}
-                                            style={styles.rateStarImage}
-                                        />
-                                        <Image
-                                            source={require('../Assets/images/greyStar.png')}
-                                            style={styles.rateStarImage}
-                                        />
-                                    </View>
-                                </View>
-                            </View>
-                            <View style={styles.commentSection}>
-                                <View style={[globalStyle.flex1]}>
-                                    <Text style={styles.commentFont}>{this.props.children.comment}</Text>
-                                </View>
-                                <View style={styles.lineViewOutSide}>
-                                    <View style={styles.lineViewInSide}/>
-                                </View>
-                                <View>
-                                    {
-                                        this.state.items.map((item,index)=>
-                                            <View key={index} style={styles.replyView}>
-                                                <Text style={styles.commentFont}>{item.text}</Text>
-                                            </View>
-                                            
-                                        )
-                                    }
-                                </View>
-                                {!this.state.selected &&
-                                <TouchableHighlight
-                                    style={styles.buttonView}
-                                    underlayColor={'rgba(100,100,100,.3)'}
-                                    onPress={this.replyExpand}
-                                >
-                                    
-                                    <View style={styles.buttonView}>
-                                        <Text>Answer</Text>
-                                    </View>
-                                   
-                                    
-                                </TouchableHighlight>
-                                }
-                                {this.state.selected &&
-                                    <View>
-                                        <View style={styles.replyViewSection}>
-                                            <TextInput
-                                                onChangeText={this.inputer.bind(this)}
-                                                value={this.state.inputText}
-                                                placeholder={'Write reply'}
-                                                onSubmitEditing={this.submitter}
-                                                autoFocus={true}
-                                            />
-                                        </View>
-                                        <TouchableHighlight
-                                            style={styles.buttonView}
-                                            underlayColor={'rgba(100,100,100,.3)'}
-                                            onPress={()=>this.submitter()}
-                                        >
-        
-                                            <View style={styles.buttonView}>
-                                                <Text>Send</Text>
-                                            </View>
-    
-    
-                                        </TouchableHighlight>
-                                    </View>
-                                
-                                    
-                                }
-                            </View>
+            <View style={styles.allComment}>
+                <View style={styles.commenterDetail}>
+                    <View style={[globalStyle.flexRow]}>
+                        <View>
+                            <Image
+                                source={this.props.children.profilePicture}
+                                style={styles.profilePicture}
+                            />
                         </View>
+                        <View>
+                            <Text style={{color: '#7a7a7a', fontWeight: '700'}}>{this.props.children.user}</Text>
+                            <Text style={styles.commentFont}>{this.props.children.position}</Text>
+                        </View>
+                    </View>
+                    <View>
+                        
+                        <View style={[styles.rateStarView, globalStyle.alignCenter]}>
+                            <Text>RATED</Text>
+                            <Image
+                                source={require('../Assets/images/goldStar.png')}
+                                style={styles.rateStarImage}
+                            />
+                            <Image
+                                source={require('../Assets/images/goldStar.png')}
+                                style={styles.rateStarImage}
+                            />
+                            <Image
+                                source={require('../Assets/images/goldStar.png')}
+                                style={styles.rateStarImage}
+                            />
+                            <Image
+                                source={require('../Assets/images/goldStar.png')}
+                                style={styles.rateStarImage}
+                            />
+                            <Image
+                                source={require('../Assets/images/greyStar.png')}
+                                style={styles.rateStarImage}
+                            />
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.commentSection}>
+                    <View style={[globalStyle.flex1]}>
+                        <Text style={styles.commentFont}>{this.props.children.comment}</Text>
+                    </View>
+                    <View style={styles.lineViewOutSide}>
+                        <View style={styles.lineViewInSide}/>
+                    </View>
+                    
+                    
+                    {
+                        console.log(this.props.text)
+                    }
+                    
+                    <View>
+                        {
+                            this.props.text.map((item, index) =>
+                                <View key={index} style={styles.replyView}>
+                                    <Text style={styles.commentFont}>{item}</Text>
+                                    <TouchableHighlight
+                                        style={[{alignSelf: 'flex-end', marginTop: 10}]}
+                                        underlayColor={'rgba(100,100,100,.3)'}
+                                        onPress={this.deleteItem.bind(this, index)}
+                                    >
+                                        <View>
+                                            <Text>Delete</Text>
+                                        </View>
+                                    </TouchableHighlight>
+                                </View>
+                            )
+                        }
+                    </View>
+                    
+                    
+                    {!this.state.selected &&
+                    <TouchableHighlight
+                        style={styles.buttonView}
+                        underlayColor={'rgba(100,100,100,.3)'}
+                        onPress={this.replyExpand}
+                    >
+                        
+                        <View style={styles.buttonView}>
+                            <Text>Answer</Text>
+                        </View>
+                    
+                    
+                    </TouchableHighlight>
+                    }
+                    
+                    
+                    {this.state.selected &&
+                    <View>
+                        <View style={styles.replyViewSection}>
+                            <TextInput
+                                onChangeText={this.inputer.bind(this)}
+                                value={this.state.inText}
+                                placeholder={'Write reply'}
+                                onSubmitEditing={this.submitter}
+                                autoFocus={true}
+                            />
+                        </View>
+                        <TouchableHighlight
+                            style={[styles.buttonView, {alignSelf: 'flex-end', marginTop: 10}]}
+                            underlayColor={'rgba(100,100,100,.3)'}
+                            onPress={this.submitter}
+                        >
+                            
+                            <View style={styles.buttonView}>
+                                <Text>Reply</Text>
+                            </View>
+                        
+                        
+                        </TouchableHighlight>
+                    </View>
+                    }
+                
+                
+                </View>
+            </View>
         );
     }
 }
+
 const styles = StyleSheet.create({
     className: {
         flex: 1,
@@ -246,16 +249,25 @@ const styles = StyleSheet.create({
         marginHorizontal: 2,
         
     },
-    replyViewSection:{
+    replyViewSection: {
         borderWidth: 1,
         // flex:1,
-        height:100
+        height: 100
     },
-    replyView:{
-        borderWidth:1,
-        borderColor:'#c6c6c6',
-        height:50,
-        justifyContent:'center',
-        paddingLeft: 20
+    replyView: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#9f9f9f',
+        height: 50,
+        justifyContent: 'center',
+        paddingLeft: 20,
+        marginVertical: 10,
+        marginLeft: 40
     }
 });
+const mapStateToProps = state => {
+    return {
+        textReply: state.textReply
+    }
+};
+
+export default connect(mapStateToProps, {deleteText, addText})(ReplyFlatList)

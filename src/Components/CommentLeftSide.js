@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, TouchableHighlight, FlatList} from 'react-native';
-// import {globalStyle} from "./globalStyle";
+import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
 import ReplyFlatList from "./ReplyFlatList";
 import {FakeComments} from "./FakeComment";
+import {connect} from "react-redux";
 
-export default class CommentLeftSide extends Component {
+class CommentLeftSide extends Component {
 
     
     render() {
@@ -29,7 +29,8 @@ export default class CommentLeftSide extends Component {
                     </View>
                     <FlatList
                         data={FakeComments.slice(0,2)}
-                        renderItem={({item},index) => <ReplyFlatList children={item}/>}
+                        extraData={this.props.textReply}
+                        renderItem={({item},index) => <ReplyFlatList text={this.props.textReply} children={item}/>}
                     />
                 </View>
             </View>
@@ -99,3 +100,11 @@ const styles = StyleSheet.create({
         borderBottomColor: '#rgba(100,100,100,.2)'
     },
 });
+
+const mapStateToProps = state => {
+    return {
+        textReply: state.textReply
+    }
+};
+
+export default connect(mapStateToProps, )(CommentLeftSide)
