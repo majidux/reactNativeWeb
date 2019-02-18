@@ -87,10 +87,6 @@ class CommentRightSide extends Component {
                             month trial period , Share our hiring list!</Text>
                     </View>
                 </View>
-                
-                {
-                    console.log(this.props)
-                }
                 <FlatList
                     data={this.props.allData}
                     windowSize={2}

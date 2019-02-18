@@ -8,6 +8,7 @@ class CommentLeftSide extends Component {
 
     
     render() {
+        let [one,two,three] =this.props.commentState.textReply;
         return (
             <View style={styles.commentLeftSide}>
                 <View>
@@ -27,13 +28,19 @@ class CommentLeftSide extends Component {
                             <Text style={styles.subtitleRecent}>Reply on comments that are not flattering</Text>
                         </View>
                     </View>
+                    
+                    {/*{console.log(`hello : ${this.props.commentState.textReply}`)}*/}
                     <FlatList
-                        data={FakeComments.slice(0,2)}
-                        extraData={this.props.textReply}
+                        data={this.props.commentState.textReply.slice(0,2)}
+                        extraData={this.props.commentState}
                         renderItem={({item},index) =>
-                            <ReplyFlatList text={this.props.textReply} children={item}/>
+                            <ReplyFlatList children={item} text={item.commentReply}/>
                         }
                     />
+                    {
+                        
+                        console.log(one.commentReply)
+                    }
                 </View>
             </View>
         );
@@ -105,7 +112,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
     return {
-        textReply: state.textReply
+        commentState : state.commentState,
+        
     }
 };
 
