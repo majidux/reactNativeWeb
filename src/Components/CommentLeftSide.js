@@ -30,7 +30,9 @@ class CommentLeftSide extends Component {
                     <FlatList
                         data={FakeComments.slice(0,2)}
                         extraData={this.props.textReply}
-                        renderItem={({item},index) => <ReplyFlatList text={this.props.textReply} children={item}/>}
+                        renderItem={({item},index) =>
+                            <ReplyFlatList text={this.props.textReply} children={item}/>
+                        }
                     />
                 </View>
             </View>

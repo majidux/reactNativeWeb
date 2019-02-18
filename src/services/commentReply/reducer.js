@@ -1,21 +1,19 @@
 import {ADD_TEXT,DELETE_TEXT} from "./type";
 
-const initialState ={
+export const initialState ={
     textReply:[]
 };
 
-const reducer = (state= initialState,action)=>{
+export const reducer = (state= initialState,action)=>{
     switch (action.type) {
         case ADD_TEXT:
-            return{
+            return {
                 ...state,
                 textReply:[
-                    ...state.textReply,action.text
+                    ...state.textReply,
+                    action.text
                 ]
-                // store.dispatch({
-                //     ...state,
-                //     ...state.textReply,action.text
-                // })
+               
             };
     
             
@@ -31,4 +29,3 @@ const reducer = (state= initialState,action)=>{
             return state;
     }
 };
-export default reducer;

@@ -39,6 +39,8 @@ class ReplyFlatList extends Component {
     
     
     render() {
+        const {textReply} = this.props;
+        console.log('text' , textReply)
         return (
             <View style={styles.allComment}>
                 <View style={styles.commenterDetail}>
@@ -88,11 +90,6 @@ class ReplyFlatList extends Component {
                     <View style={styles.lineViewOutSide}>
                         <View style={styles.lineViewInSide}/>
                     </View>
-                    
-                    
-                    {
-                        console.log(this.props.text)
-                    }
                     
                     <View>
                         {
@@ -266,7 +263,7 @@ const styles = StyleSheet.create({
 });
 const mapStateToProps = state => {
     return {
-        textReply: state.textReply
+        commentState : state.commentState
     }
 };
 

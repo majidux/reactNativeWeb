@@ -2,11 +2,15 @@ import React, {Component} from 'react';
 import {StyleSheet, ScrollView ,View} from 'react-native';
 import Header from "./Pages/Header";
 import Body from "./Pages/Body";
-import {createStore} from "redux";
+import {createStore,applyMiddleware} from "redux";
 import {Provider} from "react-redux";
-import reducer from "./services/commentReply/reducer";
-import combiner from './services/combiner';
-export const store =createStore(reducer);
+// import reducer from "./services/commentReply/reducer";
+import rootReducer from './services/combiner';
+import thunk from 'redux-thunk';
+
+
+const initialState = {};
+export const store = createStore(rootReducer,initialState,applyMiddleware(thunk));
 
 class App extends Component {
     

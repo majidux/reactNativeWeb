@@ -3,10 +3,13 @@ import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
 import {globalStyle} from "./globalStyle";
 import {FakeComments} from "./FakeComment";
 import {FakeJobOffers} from "./FakeJobOffers";
+import {connect} from "react-redux";
+import {fetchUser, receiveUser, receiveError} from "../services/fetchData/action";
+import {deleteText, addText} from "../services/commentReply/action";
 
-export default class CommentRightSide extends Component {
+class CommentRightSide extends Component {
     itemSeparator = () => {
-        return(
+        return (
             <View style={styles.lineViewOutSide}>
                 <View style={styles.lineViewInSide}/>
             </View>
@@ -80,13 +83,16 @@ export default class CommentRightSide extends Component {
                         </View>
                     </View>
                     <View style={styles.subtitleRecentView}>
-                        <Text style={styles.subtitleRecent}>Remember that there is a bonus (3K) the person passes 3 month trial period , Share our hiring list!</Text>
+                        <Text style={styles.subtitleRecent}>Remember that there is a bonus (3K) the person passes 3
+                            month trial period , Share our hiring list!</Text>
                     </View>
                 </View>
                 
-                
+                {
+                    console.log(this.props)
+                }
                 <FlatList
-                    data={FakeJobOffers.slice(0,5)}
+                    data={this.props.allData}
                     windowSize={2}
                     ItemSeparatorComponent={this.itemSeparator}
                     initialNumToRender={2}
@@ -108,21 +114,22 @@ export default class CommentRightSide extends Component {
                                         />
                                     </View>
                                     <View>
-    
-                                        <Text style={{color: '#7a7a7a'}}>{item.jobPosition}</Text>
+                                        
+                                        <Text style={{color: '#7a7a7a'}}>{item.gender}</Text>
                                         <Text style={styles.commentFont}>{item.location}</Text>
                                     </View>
                                 </View>
                             </View>
                         </View>
                     }
-    
+                
                 />
             </View>
-            
+        
         );
     }
 }
+
 const styles = StyleSheet.create({
     commentRightSide: {
         flex: 2,
@@ -185,3 +192,11 @@ const styles = StyleSheet.create({
         borderBottomColor: '#rgba(100,100,100,.2)'
     },
 });
+
+const mapStateToProps = (state) => {
+    return{
+        allData: state.data
+    }
+};
+
+export default connect(mapStateToProps, {fetchUser})(CommentRightSide)
