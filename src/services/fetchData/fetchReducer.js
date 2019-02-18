@@ -9,7 +9,6 @@ export const initialState ={
 export function resultReducer(state=initialState,action) {
     switch (action.type) {
         case FETCH_USER:
-            console.log('reducer');
             return {
                 ...state,
                 loading: true,

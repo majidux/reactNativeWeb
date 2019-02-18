@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
 import ReplyFlatList from "./ReplyFlatList";
-import {FakeComments} from "./FakeComment";
+// import {FakeComments} from "./FakeComment";
 import {connect} from "react-redux";
 
 class CommentLeftSide extends Component {
 
     
     render() {
-        let [one,two,three] =this.props.commentState.textReply;
+        // let [one,two,three] =this.props.commentState.textReply;
         return (
             <View style={styles.commentLeftSide}>
                 <View>
@@ -29,7 +29,6 @@ class CommentLeftSide extends Component {
                         </View>
                     </View>
                     
-                    {/*{console.log(`hello : ${this.props.commentState.textReply}`)}*/}
                     <FlatList
                         data={this.props.commentState.textReply.slice(0,2)}
                         extraData={this.props.commentState}
@@ -37,10 +36,10 @@ class CommentLeftSide extends Component {
                             <ReplyFlatList children={item} text={item.commentReply}/>
                         }
                     />
-                    {
-                        
-                        console.log(one.commentReply)
-                    }
+                    {/*{*/}
+                        {/**/}
+                        {/*console.log(one.commentReply)*/}
+                    {/*}*/}
                 </View>
             </View>
         );

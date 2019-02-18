@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
 import {globalStyle} from "./globalStyle";
 import {FakeComments} from "./FakeComment";
-import {FakeJobOffers} from "./FakeJobOffers";
+// import {FakeJobOffers} from "./FakeJobOffers";
 import {connect} from "react-redux";
-import {fetchUser, receiveUser, receiveError} from "../services/fetchData/action";
-import {deleteText, addText} from "../services/commentReply/action";
+import {fetchUser, receiveUser, receiveError,fetchData} from "../services/fetchData/action";
+// import {deleteText, addText} from "../services/commentReply/action";
 
 class CommentRightSide extends Component {
     itemSeparator = () => {
@@ -111,6 +111,8 @@ class CommentRightSide extends Component {
                                     </View>
                                     <View>
                                         
+                                        <Text style={{color: '#7a7a7a'}}>asasdasdsa</Text>
+                                        
                                         <Text style={{color: '#7a7a7a'}}>{item.gender}</Text>
                                         <Text style={styles.commentFont}>{item.location}</Text>
                                     </View>
@@ -195,4 +197,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {fetchUser})(CommentRightSide)
+export default connect(mapStateToProps, {fetchUser,fetchData})(CommentRightSide)

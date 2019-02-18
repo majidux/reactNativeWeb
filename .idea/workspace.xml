@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c118aaa5-bad7-4974-a80c-3cbfbc1eb3a7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/CommentLeftSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CommentLeftSide.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/CommentRightSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/CommentRightSide.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/FakeComment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/FakeComment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ReplyFlatList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ReplyFlatList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/combiner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/combiner.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/commentReply/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/commentReply/reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/fetchData/fetchReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/fetchData/fetchReducer.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,8 +24,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Components/CommentRightSide.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="88" column="23" selection-start-line="88" selection-start-column="23" selection-end-line="88" selection-end-column="23" />
+            <state relative-caret-position="321">
+              <caret line="195" column="8" selection-start-line="195" selection-start-column="8" selection-end-line="195" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+                <element signature="e#247#283#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/CommentLeftSide.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -38,35 +47,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/services/commentReply/reducer.js">
+        <entry file="file://$PROJECT_DIR$/src/services/fetchData/action.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="741">
-              <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
+            <state relative-caret-position="190">
+              <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/services/fetchData/fetchReducer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Components/CommentLeftSide.js">
+        <entry file="file://$PROJECT_DIR$/src/services/fetchData/type.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="41" column="54" selection-start-line="41" selection-start-column="54" selection-end-line="41" selection-end-column="54" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Components/ReplyFlatList.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="109" column="56" lean-forward="true" selection-start-line="109" selection-start-column="56" selection-end-line="109" selection-end-column="56" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-                <element signature="e#178#220#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="38">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -105,14 +107,14 @@
         <option value="$PROJECT_DIR$/src/services/fetchData/type.js" />
         <option value="$PROJECT_DIR$/src/services/fetchData/action.js" />
         <option value="$PROJECT_DIR$/src/services/fetchData/reducer.js" />
-        <option value="$PROJECT_DIR$/src/services/fetchData/fetchReducer.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/services/combiner.js" />
         <option value="$PROJECT_DIR$/src/Components/FakeComment.js" />
-        <option value="$PROJECT_DIR$/src/Components/CommentRightSide.js" />
-        <option value="$PROJECT_DIR$/src/Components/ReplyFlatList.js" />
         <option value="$PROJECT_DIR$/src/services/commentReply/reducer.js" />
+        <option value="$PROJECT_DIR$/src/Components/ReplyFlatList.js" />
         <option value="$PROJECT_DIR$/src/Components/CommentLeftSide.js" />
+        <option value="$PROJECT_DIR$/src/Components/CommentRightSide.js" />
+        <option value="$PROJECT_DIR$/src/services/fetchData/fetchReducer.js" />
       </list>
     </option>
   </component>
@@ -161,20 +163,7 @@
               <item name="react-native-web" type="b2602c69:ProjectViewProjectNode" />
               <item name="react-native-web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="react-native-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-native-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="services" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="react-native-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="react-native-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="commentReply" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="react-native-web" type="b2602c69:ProjectViewProjectNode" />
@@ -280,7 +269,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57457000" />
+    <option name="totallyTimeSpent" value="58739000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -438,20 +427,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/fetchData/action.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/fetchData/type.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -459,13 +434,6 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/fetchData/fetchReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -524,27 +492,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Components/CommentRightSide.js">
+    <entry file="file://$PROJECT_DIR$/src/services/commentReply/reducer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
-          <caret line="88" column="23" selection-start-line="88" selection-start-column="23" selection-end-line="88" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/commentReply/reducer.js">
+    <entry file="file://$PROJECT_DIR$/src/Components/CommentRightSide.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="741">
-          <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
+        <state relative-caret-position="321">
+          <caret line="195" column="8" selection-start-line="195" selection-start-column="8" selection-end-line="195" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#247#283#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/ReplyFlatList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="109" column="56" lean-forward="true" selection-start-line="109" selection-start-column="56" selection-end-line="109" selection-end-column="56" />
+        <state relative-caret-position="-817">
+          <caret line="54" column="14" selection-start-line="54" selection-start-column="14" selection-end-line="54" selection-end-column="14" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
             <element signature="e#178#220#0" expanded="true" />
@@ -554,11 +523,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Components/CommentLeftSide.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="41" column="54" selection-start-line="41" selection-start-column="54" selection-end-line="41" selection-end-column="54" />
+        <state relative-caret-position="209">
+          <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/fetchData/fetchReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/fetchData/action.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/fetchData/type.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
