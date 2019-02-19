@@ -113,7 +113,7 @@ class CommentRightSide extends Component {
                                         />
                                     </View>
                                     <View>
-                                        <Text style={{color: '#7a7a7a'}}>{item.title}</Text>
+                                        <Text style={{color: '#7a7a7a',textTransform:'capitalize'}}>{item.title}</Text>
                                         <Text style={styles.commentFont}>{item.id}</Text>
                                     </View>
                                 </View>
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
         fontWeight: '600'
     },
     subtitleRecentView: {
-        marginLeft: 20
+        marginLeft: 20,
     },
     imageCommentView: {
         marginRight: 5
