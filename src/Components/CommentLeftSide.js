@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
 import ReplyFlatList from "./ReplyFlatList";
-// import {FakeComments} from "./FakeComment";
 import {connect} from "react-redux";
 
 class CommentLeftSide extends Component {
@@ -36,10 +35,6 @@ class CommentLeftSide extends Component {
                             <ReplyFlatList children={item} text={item.commentReply}/>
                         }
                     />
-                    {/*{*/}
-                        {/**/}
-                        {/*console.log(one.commentReply)*/}
-                    {/*}*/}
                 </View>
             </View>
         );
@@ -116,4 +111,4 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, )(CommentLeftSide)
+export default connect(mapStateToProps)(CommentLeftSide)

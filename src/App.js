@@ -4,7 +4,6 @@ import Header from "./Pages/Header";
 import Body from "./Pages/Body";
 import {createStore,applyMiddleware} from "redux";
 import {Provider} from "react-redux";
-// import reducer from "./services/commentReply/reducer";
 import rootReducer from './services/combiner';
 import thunk from 'redux-thunk';
 

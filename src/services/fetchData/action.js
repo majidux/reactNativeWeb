@@ -14,7 +14,7 @@ export const receiveError = error => ({
 export const fetchData = () => {
     return (dispatch) => {
         dispatch(fetchUser());
-        fetch(`https://randomuser.me/api/?results=5`)
+        fetch(`http://jsonplaceholder.typicode.com/photos`)
             .then(response => response.json())
             .then(data => {
                 dispatch(receiveUser(data));

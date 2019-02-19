@@ -4,10 +4,16 @@ import {globalStyle} from "./globalStyle";
 import {FakeComments} from "./FakeComment";
 // import {FakeJobOffers} from "./FakeJobOffers";
 import {connect} from "react-redux";
-import {fetchUser, receiveUser, receiveError,fetchData} from "../services/fetchData/action";
-// import {deleteText, addText} from "../services/commentReply/action";
+import {fetchData,receiveUser} from "../services/fetchData/action";
+
 
 class CommentRightSide extends Component {
+    
+    
+    componentDidMount() {
+        this.props.fetchData();
+    }
+
     itemSeparator = () => {
         return (
             <View style={styles.lineViewOutSide}>
@@ -38,8 +44,9 @@ class CommentRightSide extends Component {
                 <FlatList
                     data={FakeComments.slice(0, 3)}
                     windowSize={2}
+                    disableVirtualization={false}
                     initialNumToRender={2}
-                    keyExtractor={item => item.id}
+                    keyExtractor={(item) => item.title}
                     renderItem={({item}) =>
                         <View style={styles.allComment}>
                             <View style={globalStyle.flexRow}>
@@ -68,8 +75,6 @@ class CommentRightSide extends Component {
                     }
                 
                 />
-                
-                
                 <View style={styles.headerComment}>
                     <View style={styles.titleView}>
                         <View style={styles.imageCommentView}>
@@ -88,10 +93,8 @@ class CommentRightSide extends Component {
                     </View>
                 </View>
                 <FlatList
-                    data={this.props.allData}
-                    windowSize={2}
+                    data={this.props.allItems.data.slice(0,3)}
                     ItemSeparatorComponent={this.itemSeparator}
-                    initialNumToRender={2}
                     keyExtractor={item => item.id}
                     renderItem={({item}) =>
                         <View style={styles.allComment}>
@@ -105,16 +108,13 @@ class CommentRightSide extends Component {
                                 <View style={globalStyle.flexRow}>
                                     <View>
                                         <Image
-                                            source={item.image}
+                                            source={{uri:item.url}}
                                             style={[styles.profilePicture, {marginHorizontal: 10}]}
                                         />
                                     </View>
                                     <View>
-                                        
-                                        <Text style={{color: '#7a7a7a'}}>asasdasdsa</Text>
-                                        
-                                        <Text style={{color: '#7a7a7a'}}>{item.gender}</Text>
-                                        <Text style={styles.commentFont}>{item.location}</Text>
+                                        <Text style={{color: '#7a7a7a'}}>{item.title}</Text>
+                                        <Text style={styles.commentFont}>{item.id}</Text>
                                     </View>
                                 </View>
                             </View>
@@ -122,6 +122,7 @@ class CommentRightSide extends Component {
                     }
                 
                 />
+                
             </View>
         
         );
@@ -192,9 +193,10 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    return{
-        allData: state.data
+    return {
+        fetchState: state.fetchState,
+        allItems:state.fetchState
     }
 };
 
-export default connect(mapStateToProps, {fetchUser,fetchData})(CommentRightSide)
+export default connect(mapStateToProps,{fetchData,receiveUser})(CommentRightSide)

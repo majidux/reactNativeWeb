@@ -12,23 +12,9 @@ class ReplyFlatList extends Component {
         this.state = {
             selected: false,
             inText: '',
-            textTwo: [
-                {
-                    one: 'one'
-                },
-                {
-                    two: 'two'
-                },
-                {
-                    three: 'three'
-                }
-            ]
         }
     }
     
-    componentDidMount() {
-        console.log(this.props.text)
-    }
     
     replyExpand = () => {
         this.setState({selected: !this.state.selected})

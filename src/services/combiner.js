@@ -1,6 +1,6 @@
 import {combineReducers} from "redux";
 import * as commentReducer from "./commentReply/reducer";
-import * as fetcher from "./fetchData/fetchReducer";
+import * as fetcher from "./fetchData/resultReducer";
 
 const rootReducer = combineReducers({
     commentState  : commentReducer.reducer,
