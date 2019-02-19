@@ -11,7 +11,7 @@ class ReplyFlatList extends Component {
         super(props);
         this.state = {
             selected: false,
-            inText: ''
+            inText: '',
         }
     }
     
@@ -50,7 +50,7 @@ class ReplyFlatList extends Component {
                             />
                         </View>
                         <View>
-                            <Text style={{color: '#7a7a7a', fontWeight: '700'}}>{this.props.children.user}</Text>
+                            <Text style={styles.fontMain}>{this.props.children.user}</Text>
                             <Text style={styles.commentFont}>{this.props.children.position}</Text>
                         </View>
                     </View>
@@ -89,28 +89,20 @@ class ReplyFlatList extends Component {
                         <View style={styles.lineViewInSide}/>
                     </View>
                     
-                    
-                    {
-                        console.log(this.props.text)
-                    }
-                    
                     <View>
-                        {
-                            this.props.text.map((item, index) =>
-                                <View key={index} style={styles.replyView}>
-                                    <Text style={styles.commentFont}>{item}</Text>
-                                    <TouchableHighlight
-                                        style={[{alignSelf: 'flex-end', marginTop: 10}]}
-                                        underlayColor={'rgba(100,100,100,.3)'}
-                                        onPress={this.deleteItem.bind(this, index)}
-                                    >
-                                        <View>
-                                            <Text>Delete</Text>
-                                        </View>
-                                    </TouchableHighlight>
-                                </View>
-                            )
-                        }
+                        {this.props.text.map((items, index) =>
+                            <View key={index} style={styles.replyView}>
+                                <Text style={styles.commentFont}>{items}</Text>
+                                <TouchableHighlight
+                                    style={[{alignSelf: 'flex-end', marginTop: 10}]}
+                                    underlayColor={'rgba(100,100,100,.3)'}
+                                    onPress={this.deleteItem.bind(this)}
+                                >
+                                    <Text>Delete</Text>
+                                </TouchableHighlight>
+                            </View>)}
+                    
+                    
                     </View>
                     
                     
@@ -184,6 +176,10 @@ const styles = StyleSheet.create({
         fontSize: 22,
         color: '#404040'
     },
+    fontMain:{
+        color: '#7a7a7a',
+        fontWeight: '700'
+    },
     subtitleRecent: {
         color: '#a9a9a9',
         fontSize: 14,
@@ -197,7 +193,9 @@ const styles = StyleSheet.create({
     },
     allComment: {
         flex: 8,
-        padding: 30
+        padding: 30,
+        backgroundColor: '#fff',
+        borderRadius:5
     },
     commenterDetail: {
         flexDirection: 'row',
@@ -261,13 +259,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingLeft: 20,
         marginVertical: 10,
-        marginLeft: 40
+        marginLeft: 40,
+        // flexDirection:'row'
+        // borderWidth:3
     }
 });
 const mapStateToProps = state => {
-    return {
-        textReply: state.textReply
-    }
+    return {}
 };
 
 export default connect(mapStateToProps, {deleteText, addText})(ReplyFlatList)

@@ -2,11 +2,20 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
 import {globalStyle} from "./globalStyle";
 import {FakeComments} from "./FakeComment";
-import {FakeJobOffers} from "./FakeJobOffers";
+// import {FakeJobOffers} from "./FakeJobOffers";
+import {connect} from "react-redux";
+import {fetchData,receiveUser} from "../services/fetchData/action";
 
-export default class CommentRightSide extends Component {
+
+class CommentRightSide extends Component {
+    
+    
+    componentDidMount() {
+        this.props.fetchData();
+    }
+
     itemSeparator = () => {
-        return(
+        return (
             <View style={styles.lineViewOutSide}>
                 <View style={styles.lineViewInSide}/>
             </View>
@@ -35,8 +44,9 @@ export default class CommentRightSide extends Component {
                 <FlatList
                     data={FakeComments.slice(0, 3)}
                     windowSize={2}
+                    disableVirtualization={false}
                     initialNumToRender={2}
-                    keyExtractor={item => item.id}
+                    keyExtractor={(item) => item.title}
                     renderItem={({item}) =>
                         <View style={styles.allComment}>
                             <View style={globalStyle.flexRow}>
@@ -65,8 +75,6 @@ export default class CommentRightSide extends Component {
                     }
                 
                 />
-                
-                
                 <View style={styles.headerComment}>
                     <View style={styles.titleView}>
                         <View style={styles.imageCommentView}>
@@ -80,16 +88,13 @@ export default class CommentRightSide extends Component {
                         </View>
                     </View>
                     <View style={styles.subtitleRecentView}>
-                        <Text style={styles.subtitleRecent}>Remember that there is a bonus (3K) the person passes 3 month trial period , Share our hiring list!</Text>
+                        <Text style={styles.subtitleRecent}>Remember that there is a bonus (3K) the person passes 3
+                            month trial period , Share our hiring list!</Text>
                     </View>
                 </View>
-                
-                
                 <FlatList
-                    data={FakeJobOffers.slice(0,5)}
-                    windowSize={2}
+                    data={this.props.allItems.data.slice(0,3)}
                     ItemSeparatorComponent={this.itemSeparator}
-                    initialNumToRender={2}
                     keyExtractor={item => item.id}
                     renderItem={({item}) =>
                         <View style={styles.allComment}>
@@ -103,26 +108,27 @@ export default class CommentRightSide extends Component {
                                 <View style={globalStyle.flexRow}>
                                     <View>
                                         <Image
-                                            source={item.image}
+                                            source={{uri:item.url}}
                                             style={[styles.profilePicture, {marginHorizontal: 10}]}
                                         />
                                     </View>
                                     <View>
-    
-                                        <Text style={{color: '#7a7a7a'}}>{item.jobPosition}</Text>
-                                        <Text style={styles.commentFont}>{item.location}</Text>
+                                        <Text style={{color: '#7a7a7a',textTransform:'capitalize'}}>{item.title}</Text>
+                                        <Text style={styles.commentFont}>{item.id}</Text>
                                     </View>
                                 </View>
                             </View>
                         </View>
                     }
-    
+                
                 />
+                
             </View>
-            
+        
         );
     }
 }
+
 const styles = StyleSheet.create({
     commentRightSide: {
         flex: 2,
@@ -150,7 +156,7 @@ const styles = StyleSheet.create({
         fontWeight: '600'
     },
     subtitleRecentView: {
-        marginLeft: 20
+        marginLeft: 20,
     },
     imageCommentView: {
         marginRight: 5
@@ -185,3 +191,12 @@ const styles = StyleSheet.create({
         borderBottomColor: '#rgba(100,100,100,.2)'
     },
 });
+
+const mapStateToProps = (state) => {
+    return {
+        fetchState: state.fetchState,
+        allItems:state.fetchState
+    }
+};
+
+export default connect(mapStateToProps,{fetchData,receiveUser})(CommentRightSide)
