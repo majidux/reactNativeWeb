@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, ScrollView, View, Text, Image} from 'react-native';
+import {StyleSheet, ScrollView, View} from 'react-native';
 import Header from "./Pages/Header";
 import Body from "./Pages/Body";
 import {createStore,applyMiddleware} from "redux";

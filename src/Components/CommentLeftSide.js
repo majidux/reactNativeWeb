@@ -10,10 +10,6 @@ class CommentLeftSide extends Component {
       render() {
             return (
                   <View style={styles.commentLeftSide}>
-                        {
-                              console.log(this.props.commentState.textReply)
-                        }
-
                         <View>
                               <View style={styles.headerComment}>
                                     <View style={styles.titleView}>
@@ -131,7 +127,6 @@ class CommentLeftSide extends Component {
                                     </View>
                               </View>
                         </View>
-
 
                   </View>
             );

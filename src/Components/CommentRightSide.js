@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, FlatList, ActivityIndicator} from 'react-native';
 import {globalStyle} from "./globalStyle";
-import {FakeComments} from "./FakeComment";
+// import {FakeComments} from "./FakeComment";
 // import {FakeJobOffers} from "./FakeJobOffers";
 import {connect} from "react-redux";
 import {fetchData, receiveUser} from "../services/fetchData/action";
+import {randomUserFetchFunction} from "../services/randomUserFetch/randomUserAction";
 
 
 class CommentRightSide extends Component {
@@ -12,6 +13,7 @@ class CommentRightSide extends Component {
     
     componentDidMount() {
         this.props.fetchData();
+        this.props.randomUserFetchFunction();
     }
     
     itemSeparator = () => {
@@ -30,8 +32,16 @@ class CommentRightSide extends Component {
             return null
         }
     };
+    activityIndicator2 = () => {
+        if (this.props.randomUserFetchFunction.loading) {
+            return <ActivityIndicator size={'large'}/>
+        } else {
+            return null
+        }
+    };
     
     render() {
+        // let [karim,_data]=this.props.randomUser.randomUserData;
         return (
             <View style={styles.commentRightSide}>
                 <View style={styles.headerComment}>
@@ -50,24 +60,28 @@ class CommentRightSide extends Component {
                         <Text style={styles.subtitleRecent}>Contact one of online administrators from list below</Text>
                     </View>
                 </View>
+                {
+                    console.log(this.props.randomUserComponents.randomUserData)
+                }
                 <FlatList
-                    data={FakeComments.slice(0, 3)}
+                    data={this.props.randomUserComponents.randomUserData}
                     windowSize={2}
-                    disableVirtualization={false}
                     initialNumToRender={2}
+                    ListHeaderComponent={this.activityIndicator2}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({item}) =>
                         <View style={styles.allComment}>
                             <View style={globalStyle.flexRow}>
                                 <View>
+                                    {console.log(item)}
                                     <Image
-                                        source={item.profilePicture}
+                                        source={item.picture.large}
                                         style={styles.profilePicture}
                                     />
                                 </View>
                                 <View>
-                                    <Text style={{color: '#7a7a7a'}}>{item.user}</Text>
-                                    <Text style={styles.commentFont}>{item.position}</Text>
+                                    <Text style={{color: '#7a7a7a'}}>{item.name.first}</Text>
+                                    <Text style={styles.commentFont}>{item.location.timezone.description}</Text>
                                 </View>
                             </View>
                             <View style={globalStyle.flexRow}>
@@ -207,9 +221,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        // fetchState: state.fetchState,
-        allItems: state.fetchState
+        allItems: state.fetchState,
+        randomUserComponents:state.randomUserFetch
     }
 };
 
-export default connect(mapStateToProps, {fetchData, receiveUser})(CommentRightSide)
+export default connect(mapStateToProps, {randomUserFetchFunction,fetchData, receiveUser})(CommentRightSide)

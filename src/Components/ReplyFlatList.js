@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, TouchableHighlight, TextInput, Animated, Easing} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableHighlight, TextInput, Animated} from 'react-native';
 // import {FakeComments} from "./FakeComment";
 import {globalStyle} from "./globalStyle";
 import {connect} from "react-redux";
@@ -173,7 +173,7 @@ class ReplyFlatList extends Component {
                     >
                         
                         <View style={styles.buttonView}>
-                            <Text>Answer</Text>
+                            <Text onPress={this.animatedHeight}>Answer</Text>
                         </View>
                     
                     
