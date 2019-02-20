@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
+import {View, Text, StyleSheet, Image, FlatList, ActivityIndicator} from 'react-native';
 import {globalStyle} from "./globalStyle";
 import {FakeComments} from "./FakeComment";
 // import {FakeJobOffers} from "./FakeJobOffers";
 import {connect} from "react-redux";
-import {fetchData,receiveUser} from "../services/fetchData/action";
+import {fetchData, receiveUser} from "../services/fetchData/action";
 
 
 class CommentRightSide extends Component {
@@ -13,13 +13,22 @@ class CommentRightSide extends Component {
     componentDidMount() {
         this.props.fetchData();
     }
-
+    
     itemSeparator = () => {
         return (
             <View style={styles.lineViewOutSide}>
                 <View style={styles.lineViewInSide}/>
             </View>
         )
+    };
+   
+    
+    activityIndicator = () => {
+        if (this.props.allItems.loading) {
+            return <ActivityIndicator size={'large'}/>
+        } else {
+            return null
+        }
     };
     
     render() {
@@ -46,7 +55,7 @@ class CommentRightSide extends Component {
                     windowSize={2}
                     disableVirtualization={false}
                     initialNumToRender={2}
-                    keyExtractor={(item) => item.title}
+                    keyExtractor={(item) => item.id.toString()}
                     renderItem={({item}) =>
                         <View style={styles.allComment}>
                             <View style={globalStyle.flexRow}>
@@ -93,9 +102,10 @@ class CommentRightSide extends Component {
                     </View>
                 </View>
                 <FlatList
-                    data={this.props.allItems.data.slice(0,3)}
+                    data={this.props.allItems.data.slice(0, 3)}
                     ItemSeparatorComponent={this.itemSeparator}
-                    keyExtractor={item => item.id}
+                    ListHeaderComponent={this.activityIndicator}
+                    keyExtractor={item => item.id.toString()}
                     renderItem={({item}) =>
                         <View style={styles.allComment}>
                             <View style={globalStyle.flexRow}>
@@ -108,12 +118,15 @@ class CommentRightSide extends Component {
                                 <View style={globalStyle.flexRow}>
                                     <View>
                                         <Image
-                                            source={{uri:item.url}}
+                                            source={{uri: item.url}}
                                             style={[styles.profilePicture, {marginHorizontal: 10}]}
                                         />
                                     </View>
                                     <View>
-                                        <Text style={{color: '#7a7a7a',textTransform:'capitalize'}}>{item.title}</Text>
+                                        <Text numberOfLines={1} style={{
+                                            color: '#7a7a7a',
+                                            textTransform: 'capitalize'
+                                        }}>{item.title}</Text>
                                         <Text style={styles.commentFont}>{item.id}</Text>
                                     </View>
                                 </View>
@@ -122,7 +135,7 @@ class CommentRightSide extends Component {
                     }
                 
                 />
-                
+            
             </View>
         
         );
@@ -195,8 +208,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
     return {
         fetchState: state.fetchState,
-        allItems:state.fetchState
+        allItems: state.fetchState
     }
 };
 
-export default connect(mapStateToProps,{fetchData,receiveUser})(CommentRightSide)
+export default connect(mapStateToProps, {fetchData, receiveUser})(CommentRightSide)

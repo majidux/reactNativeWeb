@@ -100,7 +100,7 @@ export default class Products extends Component {
                                         </TouchableHighlight>
                                         <Text style={styles.quantity}>({item.price})</Text>
                                     </View>
-                                    <View style={[globalStyle.flex1, globalStyle.justifyCenter]}>
+                                    <View style={[globalStyle.flex1, globalStyle.justifyCenter,{flexWrap: 'wrap'}]}>
                                         <Text style={styles.quantity}>Quantity : {item.quantity}</Text>
                                     </View>
                                     <View style={[styles.likes, globalStyle.flex1, globalStyle.alignCenter]}>
@@ -204,6 +204,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flex: 1,
         alignItems: 'center',
+        flexWrap:'wrap'
     },
     lineSpace: {
         paddingHorizontal: 10

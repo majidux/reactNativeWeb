@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
+import {View, Text, StyleSheet, Image, FlatList, PixelRatio, TouchableHighlight} from 'react-native';
 import ReplyFlatList from "./ReplyFlatList";
 import {globalStyle} from "./globalStyle";
 import {connect} from "react-redux";
@@ -34,6 +34,7 @@ class CommentLeftSide extends Component {
                     <FlatList
                         data={this.props.commentState.textReply.slice(0, 2)}
                         extraData={this.props.commentState}
+                        keyExtractor={item => item.id.toString()}
                         renderItem={({item}, index) =>
                             <ReplyFlatList children={item} text={item.commentReply}/>
                         }
@@ -41,7 +42,7 @@ class CommentLeftSide extends Component {
                 </View>
                 
                 
-                <View style={[globalStyle.flexRow, globalStyle.flex1]}>
+                <View style={[globalStyle.flexRow, globalStyle.flex1, {flexWrap: 'wrap'}]}>
                     <View style={globalStyle.flex1}>
                         <View style={styles.headerComment}>
                             <View style={styles.titleView}>
@@ -62,47 +63,49 @@ class CommentLeftSide extends Component {
                         <View style={styles.activePromo}>
                             <View style={styles.boxDetail}>
                                 <View style={styles.boxDetailItems}>
-                                    <Text style={styles.codeUsedActiveFont}>Code</Text>
+                                    <Text numberOfLines={1} style={styles.codeUsedActiveFont}>Code</Text>
                                 </View>
                                 <View style={[styles.boxDetailItems, {
                                     borderLeftWidth: 1,
                                     borderRightWidth: 1,
                                     borderColor: '#e1e1e1'
                                 }]}>
-                                    <Text style={styles.codeUsedActiveFont}>Used</Text>
+                                    <Text numberOfLines={1} style={styles.codeUsedActiveFont}>Used</Text>
                                 </View>
                                 <View style={styles.boxDetailItems}>
-                                    <Text style={styles.codeUsedActiveFont}>Active to</Text>
+                                    <Text numberOfLines={1} style={styles.codeUsedActiveFont}>Active to</Text>
                                 </View>
                             </View>
                             <View style={styles.boxDetail}>
                                 <View style={styles.boxDetailItems}>
-                                    <Text style={styles.fontMain}>W8CN4721</Text>
-                                    <Text style={styles.fontSubMain}>-15% discount</Text>
+                                    <Text numberOfLines={1} style={styles.fontMain}>W8CN4721</Text>
+                                    <Text numberOfLines={1} style={styles.fontSubMain}>-15% discount</Text>
                                 </View>
                                 <View style={styles.boxDetailItems}>
                                     <Text style={styles.fontMain}>28/50</Text>
                                 </View>
                                 <View style={styles.boxDetailItems}>
-                                    <Text style={styles.fontMain}>24.1.2016</Text>
-                                    <Text style={styles.fontSubMain}>1 month more</Text>
+                                    <Text numberOfLines={1} style={styles.fontMain}>24.1.2016</Text>
+                                    <Text numberOfLines={1} style={styles.fontSubMain}>1 month more</Text>
                                 </View>
                             </View>
                             <View style={styles.boxDetail}>
                                 <View style={styles.boxDetailItems}>
-                                    <Text style={styles.fontMain}>ELE-ADV82</Text>
-                                    <Text style={styles.fontSubMain}>-10% discount</Text>
+                                    <Text numberOfLines={1} style={styles.fontMain}>ELE-ADV82</Text>
+                                    <Text numberOfLines={1} style={styles.fontSubMain}>-10% discount</Text>
                                 </View>
                                 <View style={styles.boxDetailItems}><Text
-                                    style={styles.fontMain}>Unlimited</Text></View>
+                                    numberOfLines={1} style={styles.fontMain}>Unlimited</Text></View>
                                 <View style={styles.boxDetailItems}>
-                                    <Text style={styles.fontMain}>04.01.2016</Text>
-                                    <Text style={styles.fontSubMain}>two weeks more</Text>
+                                    <Text numberOfLines={1} style={styles.fontMain}>04.01.2016</Text>
+                                    <Text numberOfLines={1} style={styles.fontSubMain}>two weeks more</Text>
                                 </View>
                             </View>
-                            <View style={styles.boxDetailFooter}>
-                                <Text style={styles.fontMain}>SHOW ME ALL PROMO CODES</Text>
-                            </View>
+                            <TouchableHighlight underlayColor={'rgba(100,100,100,.5)'} onPress={() => {}}>
+                                <View style={styles.boxDetailFooter}>
+                                    <Text numberOfLines={1} style={styles.fontMain}>SHOW ME ALL PROMO CODES</Text>
+                                </View>
+                            </TouchableHighlight>
                         </View>
                     </View>
                     <View style={globalStyle.flex1}>
@@ -120,13 +123,12 @@ class CommentLeftSide extends Component {
                             </View>
                             <View style={styles.subtitleRecentView}>
                                 <Text style={styles.subtitleRecent}>Check report width best sales spot in Europe</Text>
+                            
                             </View>
                         </View>
-                        
                         <View style={styles.mapArea}>
                             <Text>MAP</Text>
                         </View>
-                    
                     </View>
                 </View>
             
@@ -160,7 +162,7 @@ const styles = StyleSheet.create({
     },
     subtitleRecent: {
         color: '#a9a9a9',
-        fontSize: 14,
+        fontSize: PixelRatio.get() * 14,
         fontWeight: '600'
     },
     subtitleRecentView: {
@@ -238,7 +240,7 @@ const styles = StyleSheet.create({
         color: '#7a7a7a',
         fontWeight: '700'
     },
-    fontSubMain:{
+    fontSubMain: {
         color: '#a9a9a9',
         fontSize: 11,
         fontWeight: '700'

@@ -6,6 +6,7 @@ import {createStore,applyMiddleware} from "redux";
 import {Provider} from "react-redux";
 import rootReducer from './services/combiner';
 import thunk from 'redux-thunk';
+import Footer from "./Pages/Footer";
 
 
 const initialState = {};
@@ -20,6 +21,7 @@ class App extends Component {
                     <View style={styles.container}>
                         <Header/>
                         <Body/>
+                        <Footer/>
                     </View>
                 </Provider>
             </ScrollView>
