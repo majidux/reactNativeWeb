@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, FlatList, PixelRatio, TouchableHighlight, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, Image, FlatList, PixelRatio, TouchableHighlight } from 'react-native';
 import ReplyFlatList from "./ReplyFlatList";
 import { globalStyle } from "./globalStyle";
 import { connect } from "react-redux";
@@ -10,7 +10,9 @@ class CommentLeftSide extends Component {
       render() {
             return (
                   <View style={styles.commentLeftSide}>
-
+                        {
+                              console.log(this.props.commentState.textReply)
+                        }
 
                         <View>
                               <View style={styles.headerComment}>
@@ -34,8 +36,8 @@ class CommentLeftSide extends Component {
                                     data={this.props.commentState.textReply.slice(0, 2)}
                                     extraData={this.props.commentState}
                                     keyExtractor={item => item.id.toString()}
-                                    renderItem={({ item }, index) =>
-                                          <ReplyFlatList children={item} text={item.commentReply} />
+                                    renderItem={({ item ,index}) =>
+                                          <ReplyFlatList children={item} text={item.commentReply} index={index} />
                                     }
                               />
                         </View>
@@ -64,11 +66,7 @@ class CommentLeftSide extends Component {
                                                 <View style={styles.boxDetailItems}>
                                                       <Text numberOfLines={1} style={styles.codeUsedActiveFont}>Code</Text>
                                                 </View>
-                                                <View style={[styles.boxDetailItems, {
-                                                      borderLeftWidth: 1,
-                                                      borderRightWidth: 1,
-                                                      borderColor: '#e1e1e1'
-                                                }]}>
+                                                <View style={[styles.boxDetailItemUsed]}>
                                                       <Text numberOfLines={1} style={styles.codeUsedActiveFont}>Used</Text>
                                                 </View>
                                                 <View style={styles.boxDetailItems}>
@@ -227,6 +225,14 @@ const styles = StyleSheet.create({
             height: 70,
       },
       boxDetailItems: {
+            paddingLeft: 20,
+            justifyContent: 'center',
+            flex: 1
+      },
+      boxDetailItemUsed:{
+            borderLeftWidth: 1,
+            borderRightWidth: 1,
+            borderColor: '#e1e1e1',
             paddingLeft: 20,
             justifyContent: 'center',
             flex: 1

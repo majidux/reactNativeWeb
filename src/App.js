@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, ScrollView ,View} from 'react-native';
+import {StyleSheet, ScrollView, View, Text, Image} from 'react-native';
 import Header from "./Pages/Header";
 import Body from "./Pages/Body";
 import {createStore,applyMiddleware} from "redux";
@@ -13,7 +13,6 @@ const initialState = {};
 export const store = createStore(rootReducer,initialState,applyMiddleware(thunk));
 
 class App extends Component {
-    
     render() {
         return (
             <ScrollView>
@@ -25,7 +24,6 @@ class App extends Component {
                     </View>
                 </Provider>
             </ScrollView>
-        
         );
     }
 }

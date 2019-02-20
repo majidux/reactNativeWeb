@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, TouchableHighlight, TextInput} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableHighlight, TextInput, Animated, Easing} from 'react-native';
 // import {FakeComments} from "./FakeComment";
 import {globalStyle} from "./globalStyle";
 import {connect} from "react-redux";
@@ -12,6 +12,8 @@ class ReplyFlatList extends Component {
         this.state = {
             selected: false,
             inText: '',
+            scaleHeightOpen: new Animated.Value(0),
+            scaleHeightClose: new Animated.Value(1),
         }
     }
     
@@ -24,17 +26,74 @@ class ReplyFlatList extends Component {
         this.setState({inText: text})
     };
     
-    submitter = () => {
+    submitter = (index) => {
         if (this.state.inText.length === 0) {
             return;
         } else {
-            this.props.addText(this.state.inText);
+            this.props.addText(this.state.inText, index);
             this.setState({inText: ''});
             this.setState({selected: !this.state.selected})
         }
     };
+    
     deleteItem = index => {
         this.props.deleteText(index);
+    };
+    
+    // animateInputOpen = () => {
+    //     Animated.timing(
+    //         this.state.scaleHeightOpen,
+    //         {
+    //             toValue: 100,
+    //             duration: 3000,
+    //             useNativeDriver: true
+    //         }
+    //     ).start(() => this.animateInputClose())
+    // };
+    // animateInputClose = () => {
+    //     Animated.timing(
+    //         this.state.scaleHeightClose,
+    //         {
+    //             toValue: 0,
+    //             duration: 3000,
+    //             useNativeDriver: true
+    //         }
+    //     ).start()
+    // };
+    
+    
+    animatedHeight = () => {
+        if (this.state.scaleHeightOpen._value === 1) {
+            Animated.timing(
+                this.state.scaleHeightOpen,
+                {
+                    toValue: 180,
+                    duration: 100
+                }
+            ).start();
+            
+        } else if (this.state.scaleHeightOpen._value === 0) {
+            
+            Animated.timing(
+                this.state.scaleHeightOpen,
+                {
+                    toValue: 50,
+                    duration: 100
+                })
+                .start()
+        }
+        Animated.timing(
+            this.state.scaleHeightOpen,
+            {
+                toValue: 50,
+                duration: 100
+            }).start(() => Animated.timing(
+            this.state.scaleHeightOpen,
+            {
+                toValue: 180,
+                duration: 150
+            }).start()
+        );
     };
     
     
@@ -123,20 +182,20 @@ class ReplyFlatList extends Component {
                     
                     
                     {this.state.selected &&
-                    <View>
-                        <View style={styles.replyViewSection}>
+                    <Animated.View>
+                        <Animated.View style={[styles.replyViewSection, {opacity: this.state.scaleHeightClose}]}>
                             <TextInput
                                 onChangeText={this.inputer.bind(this)}
                                 value={this.state.inText}
                                 placeholder={'Write reply'}
-                                onSubmitEditing={this.submitter}
+                                onSubmitEditing={this.submitter.bind(this, this.props.index)}
                                 autoFocus={true}
                             />
-                        </View>
+                        </Animated.View>
                         <TouchableHighlight
                             style={[styles.buttonView, {alignSelf: 'flex-end', marginTop: 10}]}
                             underlayColor={'rgba(100,100,100,.3)'}
-                            onPress={this.submitter}
+                            onPress={this.submitter.bind(this, this.props.index)}
                         >
                             
                             <View style={styles.buttonView}>
@@ -145,7 +204,7 @@ class ReplyFlatList extends Component {
                         
                         
                         </TouchableHighlight>
-                    </View>
+                    </Animated.View>
                     }
                 
                 
@@ -176,7 +235,7 @@ const styles = StyleSheet.create({
         fontSize: 22,
         color: '#404040'
     },
-    fontMain:{
+    fontMain: {
         color: '#7a7a7a',
         fontWeight: '700'
     },
@@ -195,7 +254,7 @@ const styles = StyleSheet.create({
         flex: 8,
         padding: 30,
         backgroundColor: '#fff',
-        borderRadius:5
+        borderRadius: 5
     },
     commenterDetail: {
         flexDirection: 'row',
@@ -245,12 +304,10 @@ const styles = StyleSheet.create({
         width: 10,
         height: 10,
         marginHorizontal: 2,
-        
     },
     replyViewSection: {
         borderWidth: 1,
-        // flex:1,
-        height: 100
+        height:100
     },
     replyView: {
         borderBottomWidth: 1,
@@ -260,12 +317,12 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         marginVertical: 10,
         marginLeft: 40,
-        // flexDirection:'row'
-        // borderWidth:3
     }
 });
 const mapStateToProps = state => {
-    return {}
+    return {
+        commentReply: state.commentState
+    }
 };
 
 export default connect(mapStateToProps, {deleteText, addText})(ReplyFlatList)

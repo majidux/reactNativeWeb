@@ -1,16 +1,17 @@
 import {ADD_TEXT, DELETE_TEXT} from "./type";
 
-const addTextFunc = text => {
+const addTextFunc =(text,id)=> {
     return {
         type: ADD_TEXT,
-        text
+        text,
+        id
     }
 };
 
-const deleteTextFunc = index => {
+const deleteTextFunc = id => {
     return {
         type: DELETE_TEXT,
-        index
+        id
     }
 };
 
@@ -18,6 +19,6 @@ export const deleteText = index => {
     return deleteTextFunc(index);
 };
 
-export const addText = text => {
-    return addTextFunc(text);
+export const addText = (text , index) => {
+    return addTextFunc(text,index);
 };

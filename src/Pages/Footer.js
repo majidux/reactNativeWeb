@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, PixelRatio, FlatList, Image, TouchableHighlight} from 'react-native';
+import {View, Text, StyleSheet, FlatList, Image, TouchableHighlight} from 'react-native';
 import {globalStyle} from "../Components/globalStyle";
 
-let font = PixelRatio.get() * 25;
 
 export default class Footer extends Component {
     
@@ -16,7 +15,8 @@ export default class Footer extends Component {
                     products: 'Products',
                     payment: 'Payment History',
                     reports: 'Reports',
-                    promo: 'Promo codes'
+                    promo: 'Promo codes',
+                    id:1,
                 }],
             
             information: [{
@@ -25,19 +25,22 @@ export default class Footer extends Component {
                 cookies: 'Cookies',
                 help: 'Help',
                 contact: 'Contact',
+                id:1,
             }],
             
             other: [{
                 about: 'About us',
                 branding: 'Branding',
                 ads: 'Advertising',
-                press: 'Press'
+                press: 'Press',
+                id:1,
             }],
             social: [{
                 facebook: require('../Assets/images/facebook.png'),
                 twitter: require('../Assets/images/twitter.png'),
                 linkedin: require('../Assets/images/linkedin.png'),
                 instagram: require('../Assets/images/instagram.png'),
+                id:1,
             }]
             
         }
@@ -51,6 +54,7 @@ export default class Footer extends Component {
                     <View style={styles.flatListOutside}>
                         <FlatList
                             data={this.state.quickLink}
+                            keyExtractor={item => item.id.toString()}
                             renderItem={({item}) =>
                                 <View style={styles.allFlatList}>
                                     <View style={styles.quickLink}>
@@ -89,6 +93,7 @@ export default class Footer extends Component {
                     <View style={styles.flatListOutside}>
                         <FlatList
                             data={this.state.information}
+                            keyExtractor={item => item.id.toString()}
                             renderItem={({item}) =>
                                 <View style={styles.allFlatList}>
                                     <View style={styles.information}>
@@ -121,20 +126,25 @@ export default class Footer extends Component {
                     <View style={styles.flatListOutside}>
                         <FlatList
                             data={this.state.other}
+                            keyExtractor={item => item.id.toString()}
                             renderItem={({item}) =>
                                 <View style={styles.allFlatList}>
                                     <View style={styles._other}>
                                         <Text style={styles.fontMain}>Other</Text>
-                                        <TouchableHighlight onPress={() => {}} underlayColor={'rgba(100,100,100,.2)'}>
+                                        <TouchableHighlight onPress={() => {
+                                        }} underlayColor={'rgba(100,100,100,.2)'}>
                                             <Text style={styles.menuItems}>{item.about}</Text>
                                         </TouchableHighlight>
-                                        <TouchableHighlight onPress={() => {}} underlayColor={'rgba(100,100,100,.2)'}>
+                                        <TouchableHighlight onPress={() => {
+                                        }} underlayColor={'rgba(100,100,100,.2)'}>
                                             <Text style={styles.menuItems}>{item.branding}</Text>
                                         </TouchableHighlight>
-                                        <TouchableHighlight onPress={() => {}} underlayColor={'rgba(100,100,100,.2)'}>
+                                        <TouchableHighlight onPress={() => {
+                                        }} underlayColor={'rgba(100,100,100,.2)'}>
                                             <Text style={styles.menuItems}>{item.ads}</Text>
                                         </TouchableHighlight>
-                                        <TouchableHighlight onPress={() => {}} underlayColor={'rgba(100,100,100,.2)'}>
+                                        <TouchableHighlight onPress={() => {
+                                        }} underlayColor={'rgba(100,100,100,.2)'}>
                                             <Text style={styles.menuItems}>{item.press}</Text>
                                         </TouchableHighlight>
                                     </View>
@@ -145,6 +155,7 @@ export default class Footer extends Component {
                     <View style={{flex: 1}}>
                         <FlatList
                             data={this.state.social}
+                            keyExtractor={item => item.id.toString()}
                             renderItem={({item}) =>
                                 <View style={styles.allFlatList}>
                                     <Text style={styles.fontMain}>Social</Text>
@@ -181,16 +192,17 @@ export default class Footer extends Component {
                     </View>
                 </View>
                 <View style={styles.credit}>
-                    <View style={[globalStyle.flex1,globalStyle.alignEnd]}>
+                    <View style={[globalStyle.flex1, globalStyle.alignEnd]}>
                         <Text style={styles.menuItems}>v1.4 November 14 2019</Text>
                     </View>
-                    <View style={[globalStyle.flex1,globalStyle.alignEnd]}>
+                    <View style={[globalStyle.flex1, globalStyle.alignEnd]}>
                         <Text style={styles.menuItems}>@ 2019 Dashboard inc All Rights Reserved</Text>
                     </View>
-                    <View style={[globalStyle.flex2,globalStyle.justifyCenter,globalStyle.alignEnd]}>
-                        <Text style={styles.menuItems}>All Systems Operational Check out our status page more details</Text>
+                    <View style={[globalStyle.flex2, globalStyle.justifyCenter, globalStyle.alignEnd]}>
+                        <Text style={styles.menuItems}>All Systems Operational Check out our status page more
+                            details</Text>
                     </View>
-                    
+                
                 </View>
             </View>
         );
@@ -247,8 +259,8 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         marginHorizontal: 5
     },
-    imageSocialStyle:{
-        width:15,
-        height:15
+    imageSocialStyle: {
+        width: 15,
+        height: 15
     }
 });
