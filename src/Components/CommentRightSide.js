@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        fetchState: state.fetchState,
+        // fetchState: state.fetchState,
         allItems: state.fetchState
     }
 };

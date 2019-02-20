@@ -14,4 +14,13 @@ export const globalStyle={
     greyColor:{
         color:'#a9a9a9'
     },
+    radius5:{
+        borderRadius:5
+    },
+    flex2:{
+        flex:2
+    },
+    alignEnd:{
+        alignItems: 'flex-end'
+    }
 };
