@@ -9259,6 +9259,13 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
+react-trend@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/react-trend/-/react-trend-1.2.4.tgz#498987286abd43ee3dff881115cd64d1c8e72d95"
+  integrity sha1-SYmHKGq9Q+49/4gRFc1k0cjnLZU=
+  dependencies:
+    prop-types "^15.5.8"
+
 react@^16.8.2:
   version "16.8.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.2.tgz#83064596feaa98d9c2857c4deae1848b542c9c0c"
