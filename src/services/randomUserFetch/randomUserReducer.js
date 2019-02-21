@@ -25,7 +25,7 @@ export const randomUserReducer = (state = initialState, action) => {
         case FAILED_FETCH_USER: {
             return {
                 ...state,
-                loading: true,
+                loading: false,
                 error: action.payload,
                 randomUserData: []
             }

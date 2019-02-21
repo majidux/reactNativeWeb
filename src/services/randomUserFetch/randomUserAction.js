@@ -15,7 +15,6 @@ export const randomUserFetchFunction = () => {
     return (dispatch) => {
         dispatch(randomUserFetch());
         fetch(`https://randomuser.me/api/?results=5`)
-            
             .then(response => response.json())
             .then(data => {
                 dispatch(successUserFetch(data.results));

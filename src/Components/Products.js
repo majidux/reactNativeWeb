@@ -1,33 +1,36 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableHighlight, Image,Animated,FlatList} from 'react-native';
+import {View, Text, StyleSheet, TouchableHighlight, Image, Animated, FlatList,ActivityIndicator} from 'react-native';
 import {globalStyle} from "./globalStyle";
 import FakeData from './FakeData';
+import {connect} from "react-redux";
+import {fetchDataProduct} from "../services/productFetch/productFetchAction";
 
 
-
-export default class Products extends Component {
+class Products extends Component {
     
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            fadeIn:new Animated.Value(0),
-            fadeOut:new Animated.Value(1)
+        this.state = {
+            fadeIn: new Animated.Value(0),
+            fadeOut: new Animated.Value(1)
         }
     }
     
     componentDidMount() {
         this.fadeIn();
+        this.props.fetchDataProduct();
     }
+    
     fadeIn = () => {
         Animated.timing(
             this.state.fadeIn,
             {
-                toValue:1,
-                duration:1000,
-                friction:1,
-                tension:10,
+                toValue: 1,
+                duration: 3000,
+                friction: 1,
+                tension: 10,
             }
-        ).start(()=>this.fadeOut())
+        ).start(() => this.fadeOut())
     };
     
     fadeOut = () => {
@@ -36,9 +39,17 @@ export default class Products extends Component {
             this.state.fadeOut,
             {
                 toValue: 0,
-                duration: 2000,
+                duration: 5000,
             }
         ).start();
+    };
+    
+    activityIndicator = () => {
+        if (this.props.itemProducts.loading) {
+            return <ActivityIndicator size={'large'}/>
+        } else {
+            return null
+        }
     };
     
     render() {
@@ -51,23 +62,23 @@ export default class Products extends Component {
                             bought products.</Text>
                     </View>
                     <View>
-                        <TouchableHighlight underlayColor={'rgba(219,219,219,.5)'} onPress={() => {
-                        }}>
+                        <TouchableHighlight underlayColor={'rgba(219,219,219,.5)'} onPress={() => {}}>
                             <Text style={styles.showAllText}>SHOW ME ALL TOP SELLING PRODUCTS(28)</Text>
                         </TouchableHighlight>
                     </View>
                 </View>
-                <Animated.View style={[styles.productsBoxes,{opacity:this.state.fadeIn}]}>
+                <View style={styles.productsBoxes}>
                     
                     <FlatList
-                        data={FakeData.slice(0,4)}
+                        data={this.props.itemProducts.productData.slice(0,4)}
                         numColumns={4}
+                        ListHeaderComponent={this.activityIndicator}
                         keyExtractor={item => item.title}
-                        renderItem={({item,index})=>
-                            <View style={[styles.singleProductsBoxes, globalStyle.flex1]}>
+                        renderItem={({item, index}) =>
+                            <Animated.View style={[styles.singleProductsBoxes, globalStyle.flex1,{opacity:this.state.fadeIn}]}>
                                 <View style={styles.productImagesView}>
                                     <Image
-                                        source={item.image}
+                                        source={item.volumeInfo.imageLinks.thumbnail}
                                         style={globalStyle.flex1}
                                     />
                                 </View>
@@ -96,20 +107,15 @@ export default class Products extends Component {
                                     </View>
                                     <View style={[styles.titleProductView]}>
                                         <TouchableHighlight underlayColor={'rgba(219,219,219,.5)'} onPress={() => {}}>
-                                            <Text style={styles.titleProduct}>{item.title}</Text>
+                                            <Text numberOfLines={1} style={styles.titleProduct}>{item.volumeInfo.title.slice(0,12)}{item.volumeInfo.title.length>12&&' ... '}</Text>
                                         </TouchableHighlight>
-                                        <Text style={styles.quantity}>({item.price})</Text>
                                     </View>
-                                    <View style={[globalStyle.flex1, globalStyle.justifyCenter,{flexWrap: 'wrap'}]}>
-                                        <Text style={styles.quantity}>Quantity : {item.quantity}</Text>
+                                    <View style={[globalStyle.flex1, globalStyle.justifyCenter, {flexWrap: 'wrap'}]}>
+                                        <Text numberOfLines={1} style={styles.quantity}>Author : {item.volumeInfo.authors}</Text>
                                     </View>
                                     <View style={[styles.likes, globalStyle.flex1, globalStyle.alignCenter]}>
                                         <View style={[globalStyle.flexRow, globalStyle.alignCenter]}>
-                                            <Image
-                                                source={require('../Assets/images/heart.png')}
-                                                style={styles.rateStarImage}
-                                            />
-                                            <Text style={styles.quantity}>{item.comment}</Text>
+                                            <Text style={styles.quantity}>{item.saleInfo.saleability}</Text>
                                         </View>
                                         <View style={styles.lineSpace}>
                                             <Text style={globalStyle.greyColor}>|</Text>
@@ -119,21 +125,22 @@ export default class Products extends Component {
                                                 source={require('../Assets/images/comment.png')}
                                                 style={styles.rateStarImage}
                                             />
-                                            <Text style={styles.quantity}>{item.likes}</Text>
+                                            <Text style={styles.quantity}>{item.volumeInfo.pageCount}</Text>
                                         </View>
-            
+                                    
                                     </View>
                                 </View>
-                            </View>
+                            </Animated.View>
                         }
                     
                     />
-                    
-                </Animated.View>
+                
+                </View>
             </View>
         );
     }
 }
+
 const styles = StyleSheet.create({
     products: {
         height: 500,
@@ -169,7 +176,7 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         backgroundColor: '#fff',
         marginRight: 10,
-        height:400
+        height: 400
         // flex:1
     },
     productImagesView: {
@@ -195,19 +202,24 @@ const styles = StyleSheet.create({
     quantity: {
         color: '#a9a9a9',
         fontSize: 12,
-        fontWeight: '700'
+        fontWeight: '700',
     },
     likes: {
         flexDirection: 'row',
     },
     titleProductView: {
-        flexDirection: 'row',
         flex: 1,
-        alignItems: 'center',
-        flexWrap:'wrap'
     },
     lineSpace: {
         paddingHorizontal: 10
     },
- 
+    
 });
+
+const mapStateToProps = (state) => {
+    return {
+        itemProducts: state.productFetchCombiner
+    }
+};
+
+export default connect(mapStateToProps, {fetchDataProduct})(Products);

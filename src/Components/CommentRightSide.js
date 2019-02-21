@@ -33,7 +33,7 @@ class CommentRightSide extends Component {
         }
     };
     activityIndicator2 = () => {
-        if (this.props.randomUserFetchFunction.loading) {
+        if (this.props.randomUserComponents.loading) {
             return <ActivityIndicator size={'large'}/>
         } else {
             return null
@@ -60,9 +60,6 @@ class CommentRightSide extends Component {
                         <Text style={styles.subtitleRecent}>Contact one of online administrators from list below</Text>
                     </View>
                 </View>
-                {
-                    console.log(this.props.randomUserComponents.randomUserData)
-                }
                 <FlatList
                     data={this.props.randomUserComponents.randomUserData}
                     windowSize={2}
@@ -73,14 +70,13 @@ class CommentRightSide extends Component {
                         <View style={styles.allComment}>
                             <View style={globalStyle.flexRow}>
                                 <View>
-                                    {console.log(item)}
                                     <Image
                                         source={item.picture.large}
                                         style={styles.profilePicture}
                                     />
                                 </View>
                                 <View>
-                                    <Text style={{color: '#7a7a7a'}}>{item.name.first}</Text>
+                                    <Text style={{alignSelf:'flex-start',color: '#7a7a7a'}}>{item.name.first}</Text>
                                     <Text style={styles.commentFont}>{item.location.timezone.description}</Text>
                                 </View>
                             </View>
