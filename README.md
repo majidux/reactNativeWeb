@@ -1,1 +1,1 @@
-![alt text](./src/Assets/images/screen.png)
+![alt text](./src/Assets/images/screenshot.png)
