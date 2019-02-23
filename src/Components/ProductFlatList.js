@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, Animated, TouchableHighlight, FlatList, ActivityIndicator} from 'react-native';
+import {View, Text, StyleSheet, Image, Animated, TouchableHighlight} from 'react-native';
 import {globalStyle} from "./globalStyle";
 import {connect} from "react-redux";
 import {fetchDataProduct} from "../services/productFetch/productFetchAction";
@@ -17,7 +17,6 @@ class ProductFlatList extends Component {
     
     componentDidMount() {
         this.fadeIn();
-        this.props.fetchDataProduct();
     }
     
     fadeIn = () => {

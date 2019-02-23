@@ -41,7 +41,6 @@ class CommentRightSide extends Component {
     };
     
     render() {
-        // let [karim,_data]=this.props.randomUser.randomUserData;
         return (
             <View style={styles.commentRightSide}>
                 <View style={styles.headerComment}>
@@ -57,7 +56,7 @@ class CommentRightSide extends Component {
                         </View>
                     </View>
                     <View style={styles.subtitleRecentView}>
-                        <Text style={styles.subtitleRecent}>Contact one of online administrators from list below</Text>
+                        <Text numberOfLines={2} ellipsizeMode="tail" style={styles.subtitleRecent}>Contact one of online administrators from list below</Text>
                     </View>
                 </View>
                 <FlatList

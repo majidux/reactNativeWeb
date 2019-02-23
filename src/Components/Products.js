@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableHighlight, Image, Animated, FlatList,ActivityIndicator} from 'react-native';
+import {View, Text, StyleSheet, TouchableHighlight, FlatList, ActivityIndicator} from 'react-native';
 import {globalStyle} from "./globalStyle";
 import {connect} from "react-redux";
 import {fetchDataProduct} from "../services/productFetch/productFetchAction";
@@ -8,13 +8,12 @@ import ProductFlatList from "./ProductFlatList";
 
 class Products extends Component {
     
-  
     
     componentDidMount() {
         this.props.fetchDataProduct();
     }
     
-
+    
     activityIndicator = () => {
         if (this.props.itemProducts.loading) {
             return <ActivityIndicator size={'large'}/>
@@ -39,17 +38,17 @@ class Products extends Component {
                     </View>
                 </View>
                 <View style={styles.productsBoxes}>
-                <FlatList
-                    data={this.props.itemProducts.productData.slice(0,4)}
-                    numColumns={4}
-                    ListHeaderComponent={this.activityIndicator}
-                    keyExtractor={item => item.title}
-                    renderItem={({item,index})=>
-                        <ProductFlatList item={item} index={index}/>
-                    }
-                />
+                    <FlatList
+                        data={this.props.itemProducts.productData.slice(0, 4)}
+                        numColumns={4}
+                        ListHeaderComponent={this.activityIndicator}
+                        keyExtractor={item => item.volumeInfo.title}
+                        renderItem={({item, index}) =>
+                            <ProductFlatList item={item} index={index}/>
+                        }
+                    />
                 </View>
-                
+            
             </View>
         );
     }

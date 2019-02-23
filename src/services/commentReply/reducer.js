@@ -48,15 +48,29 @@ export const reducer = (state = initialState, action) => {
         
         
         case DELETE_TEXT:
+            // return {
+            //     ...state,
+            //         textReply:[
+            //     ...state.textReply[action.id].commentReply.slice(0, action.id),
+            //     ...state.textReply[action.id].commentReply.slice(action.id + 1)
+            // ]
+            //     }
+            
             return {
                 ...state,
-                textReply: [
-                    ...state.textReply.slice(0, action.id),
-                    
-                    ...state.textReply.slice(action.id + 1),
-                ],
-            };
-        default :
-            return state;
-    }
+                textReply:[
+                    ...state.textReply.slice(0,action.id),
+                    {
+                        ...state.textReply[action.id],
+                        commentReply:[
+                            ...state.textReply[action.id].commentReply.slice(0,action.index),
+                            ...state.textReply[action.id].commentReply.slice(action.index+1)
+                        ]
+                    },
+                    ...state.textReply.slice(action.id+1)
+                ]
+            }
+default :
+    return state;
+}
 };

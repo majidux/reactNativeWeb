@@ -36,8 +36,9 @@ class ReplyFlatList extends Component {
         }
     };
     
-    deleteItem = index => {
-        this.props.deleteText(index);
+    deleteItem = (flatlistIndex , mapCommentsIndex) => {
+        this.props.deleteText(flatlistIndex,mapCommentsIndex);
+        console.log(this.props)
     };
     
     // animateInputOpen = () => {
@@ -155,7 +156,7 @@ class ReplyFlatList extends Component {
                                 <TouchableHighlight
                                     style={[{alignSelf: 'flex-end', marginTop: 10}]}
                                     underlayColor={'rgba(100,100,100,.3)'}
-                                    onPress={this.deleteItem.bind(this)}
+                                    onPress={this.deleteItem.bind(this , this.props.index , index)}
                                 >
                                     <Text>Delete</Text>
                                 </TouchableHighlight>
