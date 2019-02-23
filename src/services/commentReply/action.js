@@ -8,16 +8,16 @@ const addTextFunc =(text,id)=> {
     }
 };
 
-const deleteTextFunc =(flatlistIndex,mapCommentIndex) => {
+const deleteTextFunc =(flatListIndex,mapCommentIndex) => {
     return {
         type: DELETE_TEXT,
-        id : flatlistIndex,
+        id : flatListIndex,
         index: mapCommentIndex
     }
 };
 
-export const deleteText = (flatlistIndex , mapCommentIndex) => {
-    return deleteTextFunc(flatlistIndex,mapCommentIndex);
+export const deleteText = (flatListIndex , mapCommentIndex) => {
+    return deleteTextFunc(flatListIndex,mapCommentIndex);
 };
 
 export const addText = (text , index) => {

@@ -36,8 +36,8 @@ class ReplyFlatList extends Component {
         }
     };
     
-    deleteItem = (flatlistIndex , mapCommentsIndex) => {
-        this.props.deleteText(flatlistIndex,mapCommentsIndex);
+    deleteItem = (flatListIndex , mapCommentsIndex) => {
+        this.props.deleteText(flatListIndex,mapCommentsIndex);
         console.log(this.props)
     };
     
